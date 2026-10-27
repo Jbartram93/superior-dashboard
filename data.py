@@ -121,14 +121,14 @@ CORRECTIVE_ACTIONS = [
 
 # MEETINGS — Auto-populated (recurring) + manual. Text me to add/edit.
 MEETINGS = [
+    {"date": "2026-10-28", "time": "12:00 PM", "title": "Chili Cookout", "loc": "Break Room"},
     {"date": "2026-10-28", "time": "9:00 AM", "title": "SCC Production Call (Teams)", "loc": "Teams"},
     {"date": "2026-10-29", "time": "10:30 AM", "title": "Safety Walkthrough"},
+    {"date": "2026-10-29", "time": "All Day", "title": "Board of Directors Site Visit"},
     {"date": "2026-10-30", "time": "1:00 PM", "title": "Weekly Planning Meeting", "loc": "Conf Room"},
     {"date": "2026-10-30", "time": "1:30 PM", "title": "Monthly Maintenance Meeting", "loc": "Conf Room"},
     {"date": "2026-10-30", "time": "2:30 PM", "title": "Projects Meeting", "loc": "Conf Room"},
-    {"date": "2026-10-27", "time": "12:00 PM", "title": "Chili Cookout", "loc": "Break Room"},
-    {"date": "2026-10-28", "time": "All Day", "title": "Board of Directors Site Visit"},
-    {"date": "2026-10-30", "time": "", "title": "Trick or Treat"},
+    {"date": "2026-10-31", "time": "", "title": "Trick or Treat"},
 ]
 
 # SETTINGS
