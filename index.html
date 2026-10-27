@@ -7,38 +7,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 body{background:#0a0a1a;color:#00ffcc;font-family:'Orbitron',monospace,sans-serif;font-size:15px;padding:20px 24px;position:relative;overflow-x:hidden;text-shadow:0 0 5px rgba(0,255,204,0.3)}
 body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,204,0.03) 2px,rgba(0,255,204,0.03) 4px);pointer-events:none;z-index:9999}
-.card{background:rgba(20,5,40,0.85);border:1px solid #ff00ff;border-radius:8px;padding:14px 18px;margin-bottom:14px;position:relative;z-index:1;box-shadow:0 0 12px rgba(255,0,255,0.2),inset 0 0 20px rgba(0,255,204,0.05)}
-.card:hover{box-shadow:0 0 20px rgba(255,0,255,0.4),inset 0 0 30px rgba(0,255,204,0.1);border-color:#00ffcc}
+.card{background:rgba(10,5,30,0.88);border:1px solid #ff00ff;border-radius:8px;padding:14px 18px;margin-bottom:14px;position:relative;z-index:1;box-shadow:0 0 12px rgba(255,0,255,0.2),inset 0 0 20px rgba(0,255,204,0.05)}
+.card:hover{box-shadow:0 0 25px rgba(255,0,255,0.4),0 0 15px rgba(0,255,204,0.2),inset 0 0 30px rgba(0,255,204,0.1);border-color:#00ffcc}
 h2{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#ff00ff;margin-bottom:10px;font-weight:700;text-shadow:0 0 10px rgba(255,0,255,0.5)}
 h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shadow:0 0 8px currentColor}
 .empty{color:#6633cc;font-size:13px;margin:4px 0}
 .muted{color:#6633cc;font-size:11px}
-.header{display:flex;align-items:flex-start;margin-bottom:16px;border-bottom:2px solid #ff00ff;padding-bottom:12px;box-shadow:0 4px 12px rgba(255,0,255,0.15)}
+.header{display:flex;align-items:flex-start;margin-bottom:16px;border-bottom:2px solid #ff00ff;padding-bottom:12px;box-shadow:0 4px 12px rgba(255,0,255,0.15);background:linear-gradient(90deg,transparent,rgba(255,0,255,0.05),transparent)}
 .header>div:nth-child(1){width:40%}
 .header>div:nth-child(2){width:35%}
 .header>div:nth-child(3){width:25%;text-align:right}
 .clock{font-size:52px;font-weight:900;letter-spacing:-1.5px;color:#00ffcc;text-shadow:0 0 15px rgba(0,255,204,0.6),0 0 30px rgba(0,255,204,0.3),0 0 45px rgba(0,255,204,0.1)}
-.clock small{font-size:24px;font-weight:700;margin-left:4px;color:#ff00ff;text-shadow:0 0 10px rgba(255,0,255,0.5)}
-.date-line{font-size:14px;font-weight:700;letter-spacing:2px;color:#ff00ff;margin-top:4px;text-shadow:0 0 8px rgba(255,0,255,0.4)}
+.clock small{font-size:24px;font-weight:700;margin-left:4px;color:#ff00ff;text-shadow:0 0 10px rgba(255,0,255,0.5),0 0 20px rgba(255,0,255,0.2)}
+.date-line{font-size:14px;font-weight:700;letter-spacing:2px;color:#ffcc00;text-shadow:0 0 8px rgba(255,204,0,0.4)}
 .wx-simple{font-size:13px;color:#00ffcc}
-.wx-temp{font-size:28px;font-weight:700;color:#00ffcc;margin-right:8px;text-shadow:0 0 10px rgba(0,255,204,0.4)}
-.wx-hilo{color:#6633cc;margin-right:12px}
-.wx-rain{color:#00ffff;text-shadow:0 0 8px rgba(0,255,255,0.4)}
-.header-logo{height:36px;opacity:0.6;margin-bottom:4px;filter:drop-shadow(0 0 8px #ff00ff)}
-.quote-card{border-left:4px solid #00ffcc}
-.quote-icon{font-size:28px;color:#ff00ff;line-height:1;float:left;margin-right:8px;text-shadow:0 0 10px rgba(255,0,255,0.6)}
+.wx-temp{font-size:28px;font-weight:700;color:#ffcc00;margin-right:8px;text-shadow:0 0 10px rgba(255,204,0,0.4)}
+.wx-hilo{color:#00ffcc;margin-right:12px}
+.wx-rain{color:#0066ff;text-shadow:0 0 8px rgba(0,102,255,0.4)}
+.header-logo{height:36px;opacity:0.6;margin-bottom:4px;filter:drop-shadow(0 0 8px #ff00ff) drop-shadow(0 0 3px #00ffcc)}
+.quote-card{border-left:4px solid #ffcc00;background:linear-gradient(135deg,rgba(10,5,30,0.88) 60%,rgba(255,204,0,0.05))}
+.quote-icon{font-size:28px;color:#ffcc00;line-height:1;float:left;margin-right:8px;text-shadow:0 0 10px rgba(255,204,0,0.6)}
 .quote-text{font-size:17px;font-style:italic;color:#00ffcc;margin-bottom:4px;line-height:1.35;text-shadow:0 0 8px rgba(0,255,204,0.2)}
 .quote-author{font-size:12px;color:#ff00ff;text-align:right}
 .chart-card svg{width:100%;height:auto}
 .action-grid{display:flex;gap:12px}
 .action-col{flex:1;min-width:0}
 .action-row{padding:5px 8px;margin:3px 0;font-size:12px;line-height:1.3;border-radius:4px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,0,255,0.15)}
-.action-row:hover{border-color:#00ffcc}
+.action-row:hover{border-color:#ffcc00;box-shadow:0 0 10px rgba(255,204,0,0.2)}
 .week-grid{display:flex;gap:5px}
 .wday{flex:1;min-width:0;background:rgba(0,0,0,0.4);border-radius:6px;padding:6px 4px;border:1px solid rgba(255,0,255,0.1)}
-.wday-today{background:rgba(255,0,255,0.08);border:1px solid #ff00ff;box-shadow:0 0 12px rgba(255,0,255,0.2)}
-.wday-head{font-size:10px;font-weight:700;color:#6633cc;text-transform:uppercase;text-align:center;margin-bottom:5px}
-.wdate{display:block;font-size:18px;font-weight:900;color:#00ffcc;margin-top:2px;text-shadow:0 0 8px rgba(0,255,204,0.3)}
+.wday-today{background:rgba(255,0,255,0.08);border:1px solid #ff00ff;box-shadow:0 0 12px rgba(255,0,255,0.2),inset 0 0 20px rgba(0,255,204,0.05)}
+.wday-head{font-size:10px;font-weight:700;color:#0066ff;text-transform:uppercase;text-align:center;margin-bottom:5px;text-shadow:0 0 5px rgba(0,102,255,0.3)}
+.wdate{display:block;font-size:18px;font-weight:900;color:#ffcc00;margin-top:2px;text-shadow:0 0 8px rgba(255,204,0,0.3)}
 .wday-today .wday-head{color:#ff00ff}
 .wevent{font-size:9px;line-height:1.2;padding:2px 1px;border-bottom:1px solid rgba(255,0,255,0.1);margin-bottom:1px}
 .wevent:last-child{border-bottom:none}
@@ -47,7 +47,7 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 .wevent.all-day{background:rgba(255,0,255,0.1);border-left:2px solid #ff00ff;padding:3px;margin-bottom:2px;border-radius:2px;font-size:9px}
 .wloc{color:#6633cc;font-size:8px}
 .prio-row{padding:4px 8px;margin:2px 0;font-size:12px;background:rgba(0,0,0,0.4);border-radius:4px;border-left:3px solid #ff00ff}
-.prio-row.prio-done{opacity:0.4;border-left-color:#6633cc}
+.prio-row.prio-done{opacity:0.4;border-left-color:#0066ff}
 .prio-icon{margin-right:6px;font-size:13px}
 .ca-row{padding:3px 0;font-size:12px;border-bottom:1px solid rgba(255,0,255,0.1)}
 .ca-row b{color:#00ffcc}
@@ -56,14 +56,13 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 .rm-period{font-size:10px;font-weight:700;color:#ff00ff;text-transform:uppercase;letter-spacing:2px;margin-bottom:5px;border-bottom:1px solid rgba(255,0,255,0.2);padding-bottom:3px;text-shadow:0 0 5px rgba(255,0,255,0.4)}
 .rm-items{list-style:none;padding:0;margin:0}
 .rm-items li{font-size:11px;padding:2px 0;color:#00ffcc;line-height:1.3}
-.rm-items li:before{content:"B8";color:#ff00ff;margin-right:4px}
+.rm-items li:before{content:"B8";color:#ffcc00;margin-right:4px;text-shadow:0 0 5px rgba(255,204,0,0.4)}
 .footer{color:#6633cc;font-size:11px;margin-top:12px;text-align:center}
-.prio-row.prio-done{opacity:0.4;border-left-color:#6633cc}
 </style>
 </head><body>
 <div class="header">
   <div>
-    <div class="clock"><span id="c">3:24<small>PM</small></span></div>
+    <div class="clock"><span id="c">3:31<small>PM</small></span></div>
     <div class="date-line">TUESDAY OCTOBER 27</div>
   </div>
   <div class="weather"><div class="wx-simple"><span class="wx-temp">73°</span> <span class="wx-hilo">73° / 44°</span> <span class="wx-rain">0% rain</span></div></div>
@@ -125,7 +124,7 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 <div class="ca-row">🔴 <b>Justin</b> Review LOTO procedures for oven area <span class="muted">(0d)</span></div>
 </div>
 
-<div class="footer">Built Oct 27, 03:24 PM ET · refreshes every 30 min · Vanceburg</div>
+<div class="footer">Built Oct 27, 03:31 PM ET · refreshes every 30 min · Vanceburg</div>
 
 <script>
 (function(){
