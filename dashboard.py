@@ -41,6 +41,78 @@ try:
 except:
     wx_html = '<div class="wx-now">--°</div>'
 
+# ===================================================================
+# ICS CALENDAR FETCH — Pull live meetings from Outlook
+# ===================================================================
+
+def fetch_ics_meetings():
+    """Fetch and parse ICS calendar from Outlook. Returns list of meeting dicts."""
+    import urllib.request, re
+    from datetime import datetime, timedelta
+    from data import ICS_URL
+    
+    meetings = []
+    try:
+        req = urllib.request.Request(ICS_URL, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            ics_data = resp.read().decode("utf-8", errors="replace")
+        
+        # Split into individual VEVENT blocks
+        events = re.split(r'BEGIN:VEVENT', ics_data)
+        
+        for evt in events[1:]:  # Skip everything before first VEVENT
+            # Extract fields
+            title_m = re.search(r'SUMMARY:(.*?)(?:\n|$)', evt, re.DOTALL)
+            dtstart_m = re.search(r'DTSTART.*?:(\d{8})T?(\d{6})?', evt)
+            dtend_m = re.search(r'DTEND.*?:(\d{8})T?(\d{6})?', evt)
+            loc_m = re.search(r'LOCATION:(.*?)(?:\n|$)', evt)
+            
+            if not title_m or not dtstart_m:
+                continue
+            
+            title = title_m.group(1).strip().replace('\\,', ',').replace('\n', ' ')
+            date_str = dtstart_m.group(1)
+            time_str = dtstart_m.group(2) if dtstart_m.group(2) else ""
+            loc = loc_m.group(1).strip() if loc_m else ""
+            
+            # Parse date
+            try:
+                evt_date = datetime.strptime(date_str, "%Y%m%d").date()
+            except:
+                continue
+            
+            # Skip events in the past (older than yesterday)
+            today = datetime.now().date()
+            if evt_date < today - timedelta(days=1):
+                continue
+            
+            # Format time
+            if time_str:
+                try:
+                    t = datetime.strptime(time_str, "%H%M%S")
+                    time_fmt = t.strftime("%I:%M %p").lstrip("0")
+                except:
+                    time_fmt = "All day"
+            else:
+                time_fmt = "All day"
+            
+            meetings.append({
+                "date": evt_date.isoformat(),
+                "time": time_fmt,
+                "title": title,
+                "loc": loc
+            })
+        
+        # Sort by date then time
+        def sort_key(m):
+            return (m["date"], m["time"])
+        meetings.sort(key=sort_key)
+        
+    except Exception as e:
+        print(f"ICS fetch error: {e}")
+    
+    return meetings
+
 # Quote of the day
 q = LEADERSHIP_QUOTES[TODAY.timetuple().tm_yday % len(LEADERSHIP_QUOTES)]
 
@@ -66,13 +138,19 @@ chart_svg = f'<svg width="480" height="180"><text x="40" y="15" font-size="9" fi
 def action_list(items, color):
     return "\n".join(f'<div class="action-row" style="border-left:3px solid {color}"><span>{i}</span></div>' for i in items)
 
-# Meetings
+# Meetings — ICS-synced + manual fallback
+ics_meetings = fetch_ics_meetings()
+all_meetings = ics_meetings if len(ics_meetings) >= 2 else MEETINGS
+if len(ics_meetings) >= 2:
+    print(f"ICS: {len(ics_meetings)} meetings loaded")
+else:
+    print(f"ICS failed/empty — using {len(MEETINGS)} manual meetings")
 meeting_rows = []
 for offset in range(7):
     day = TODAY + timedelta(days=offset)
     iso = day.isoformat()
     label = "Today" if offset == 0 else day.strftime("%a")
-    day_meetings = sorted([m for m in MEETINGS if m["date"] == iso], key=lambda m: m["time"])
+    day_meetings = sorted([m for m in all_meetings if m["date"] == iso], key=lambda m: m["time"])
     for m in day_meetings:
         loc = f' <span class="loc">({m["loc"]})</span>' if m.get("loc") else ""
         meeting_rows.append(f'<div class="meeting-row"><b>{label}</b> {m["time"]} - {m["title"]}{loc}</div>')
