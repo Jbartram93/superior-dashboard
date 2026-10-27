@@ -44,60 +44,86 @@ max_val = max(list(INCIDENTS_2026.values()) + list(INCIDENTS_2025.values()) + [5
 # Build line chart — Power BI style
 # Points + lines for 2026, 2025, and a flat benchmark line
 def build_line_chart():
+    # CUMULATIVE YTD — Power BI style. Each month shows the running total
+    # of recordables so far that year. The slope tells you if you're on
+    # pace to beat the industry benchmark or not.
     w, h = 520, 200
     pad = {"t": 25, "r": 30, "b": 30, "l": 35}
     cw = w - pad["l"] - pad["r"]
     ch = h - pad["t"] - pad["b"]
-    all_vals = list(INCIDENTS_2026.values()) + list(INCIDENTS_2025.values()) + [INDUSTRY_BENCHMARK]
+    
+    # Compute cumulative YTD values
+    cum26 = []
+    cum25 = []
+    total26 = 0
+    total25 = 0
+    for i, m in enumerate(months):
+        total26 += INCIDENTS_2026[m] or 0
+        total25 += INCIDENTS_2025[m] or 0
+        cum26.append(total26)
+        cum25.append(total25)
+    
+    # Benchmark line = industry benchmark (3.3/yr) * months elapsed
+    all_vals = cum26 + cum25 + [INDUSTRY_BENCHMARK]
     max_v = max(all_vals) if all_vals else 5
     max_v = max(max_v, 5)
     
     def xpos(i):
         return pad["l"] + (i / 11) * cw
     def ypos(v):
-        return pad["t"] + ch - (v / (max_v * 1.2)) * ch
+        return pad["t"] + ch - (v / (max_v * 1.15)) * ch
     
     # Grid lines
     grid = ""
-    for g in range(0, int(max_v * 1.2) + 2):
+    step = max(1, int(max_v * 1.15 / 6))
+    for g in range(0, int(max_v * 1.15) + step, step):
         gy = ypos(g)
         grid += f'<line x1="{pad["l"]}" y1="{gy}" x2="{w - pad["r"]}" y2="{gy}" stroke="#475569" stroke-width="0.5"/>'
         grid += f'<text x="{pad["l"] - 4}" y="{gy + 3}" font-size="8" fill="#64748b" text-anchor="end">{g}</text>'
     
-    # 2025 line (blue, dashed)
+    # 2025 cumulative line (dashed blue)
     pts25 = []
     for i, m in enumerate(months):
-        pts25.append(f'{xpos(i)},{ypos(INCIDENTS_2025[m] or 0)}')
+        pts25.append(f'{xpos(i)},{ypos(cum25[i])}')
     line25 = f'<polyline points="{" ".join(pts25)}" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3" opacity="0.7"/>'
+    for i, m in enumerate(months):
+        if cum25[i] > 0:
+            line25 += f'<circle cx="{xpos(i)}" cy="{ypos(cum25[i])}" r="3" fill="#3b82f6" stroke="#1e293b" stroke-width="1"/>'
     
-    # 2026 line (amber, solid)
+    # 2026 cumulative line (solid amber)
     pts26 = []
     for i, m in enumerate(months):
-        pts26.append(f'{xpos(i)},{ypos(INCIDENTS_2026[m] or 0)}')
+        pts26.append(f'{xpos(i)},{ypos(cum26[i])}')
     line26 = f'<polyline points="{" ".join(pts26)}" fill="none" stroke="#f59e0b" stroke-width="2.5"/>'
-    
-    # 2026 dots
-    dots26 = ""
     for i, m in enumerate(months):
-        v = INCIDENTS_2026[m] or 0
-        dots26 += f'<circle cx="{xpos(i)}" cy="{ypos(v)}" r="3.5" fill="#f59e0b" stroke="#1e293b" stroke-width="1"/>'
+        if cum26[i] > 0:
+            line26 += f'<circle cx="{xpos(i)}" cy="{ypos(cum26[i])}" r="3.5" fill="#f59e0b" stroke="#1e293b" stroke-width="1"/>'
     
-    # Industry benchmark flat line
-    by = ypos(INDUSTRY_BENCHMARK)
+    # Industry benchmark cumulative line (red dashed)
+    bench_annual = INDUSTRY_BENCHMARK
+    bench_by_month = bench_annual  # This is the annual benchmark, shown as flat line
+    by = ypos(bench_annual)
     bench_line = f'<line x1="{pad["l"]}" y1="{by}" x2="{w - pad["r"]}" y2="{by}" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>'
-    bench_label = f'<text x="{w - pad["r"]}" y="{by - 4}" font-size="9" fill="#ef4444" text-anchor="end">Industry {INDUSTRY_BENCHMARK}</text>'
+    bench_label = f'<text x="{w - pad["r"]}" y="{by - 4}" font-size="9" fill="#ef4444" text-anchor="end">Benchmark {bench_annual}/yr</text>'
     
     # Month labels
     month_labels = ""
     for i, m in enumerate(months):
         month_labels += f'<text x="{xpos(i)}" y="{h - 5}" font-size="8" fill="#64748b" text-anchor="middle">{m[:3]}</text>'
     
-    # Legend
-    legend = f'<rect x="{pad["l"]}" y="6" width="10" height="3" fill="#f59e0b"/><text x="{pad["l"] + 14}" y="10" font-size="8" fill="#94a3b8">2026</text>'
-    legend += f'<rect x="{pad["l"] + 60}" y="6" width="10" height="3" fill="#3b82f6"/><text x="{pad["l"] + 74}" y="10" font-size="8" fill="#94a3b8">2025</text>'
-    legend += f'<line x1="{pad["l"] + 120}" y1="7" x2="{pad["l"] + 130}" y2="7" stroke="#ef4444" stroke-width="1.5"/><text x="{pad["l"] + 134}" y="10" font-size="8" fill="#94a3b8">Industry</text>'
+    # Y-axis label
+    y_label = '<text x="12" y="15" font-size="9" fill="#94a3b8">YTD</text>'
     
-    svg = f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}">{grid}{line25}{line26}{dots26}{bench_line}{bench_label}{month_labels}{legend}</svg>'
+    # Legend
+    legend = f'<rect x="{pad["l"]}" y="6" width="10" height="3" fill="#f59e0b"/><text x="{pad["l"] + 14}" y="10" font-size="8" fill="#94a3b8">2026 YTD</text>'
+    legend += f'<rect x="{pad["l"] + 80}" y="6" width="10" height="3" fill="#3b82f6"/><text x="{pad["l"] + 94}" y="10" font-size="8" fill="#94a3b8">2025 YTD</text>'
+    legend += f'<line x1="{pad["l"] + 160}" y1="7" x2="{pad["l"] + 170}" y2="7" stroke="#ef4444" stroke-width="1.5"/><text x="{pad["l"] + 174}" y="10" font-size="8" fill="#94a3b8">Benchmark</text>'
+    
+    # Current YTD annotation
+    current_ytd = cum26[-1]  # Last month's cumulative (Oct = 4)
+    ytd_label = f'<text x="{xpos(9)}" y="{ypos(cum26[9]) - 8}" font-size="10" fill="#f59e0b" font-weight="bold" text-anchor="middle">YTD: {current_ytd}</text>' if current_ytd > 0 else ""
+    
+    svg = f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}">{grid}{line25}{line26}{bench_line}{bench_label}{y_label}{month_labels}{legend}{ytd_label}</svg>'
     return svg
 
 chart_svg = build_line_chart()
