@@ -83,7 +83,35 @@ THIS_QUARTER = [
     "Build automated EHS dashboard",
 ]
 
-# CORRECTIVE ACTIONS
+# GREG'S 60-DAY ROADMAP — from plant manager's handwritten plan
+ROADMAP = [
+    {"period": "Week 1-2", "items": [
+        "Orientation & floor time",
+        "Watch trainers with JSAs",
+        "Take over incident reporting",
+        "Lead safety walks",
+        "Review 2026 incidents",
+        "Toolbox talks — daily",
+    ]},
+    {"period": "Week 2-4", "items": [
+        "Learn to teach orientation",
+        "Engage employees on floor",
+        "Deep dive training gaps",
+    ]},
+    {"period": "Month 2", "items": [
+        "JSA audit team meetings",
+        "Present observations & recommendations",
+        "Build incident pattern analysis",
+    ]},
+    {"period": "Longer-term", "items": [
+        "Confined Space trainer cert",
+        "LOTO trainer cert",
+        "Emergency Response trainer cert",
+        "CPR / First Aid trainer cert",
+        "OSHA-10 trainer cert",
+        "Start HazCom program",
+    ]},
+]
 CORRECTIVE_ACTIONS = [
     {"title":"Complete 2026 incident review & RCA","status":"in-progress","days":2,"owner":"Justin"},
     {"title":"Rebuild Oven Operator JSA — ownership & review structure","status":"open","days":1,"owner":"Justin"},
