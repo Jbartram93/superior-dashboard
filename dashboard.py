@@ -137,18 +137,16 @@ def build_week_calendar(meetings):
     days_html = ""
     # Special day emoji map (month-day -> emoji)
     special_days = {
-        (10, 31): "🎃",  # Halloween
-        (11, 1): "💀",   # Day of the Dead
-        (11, 5): "🎆",   # Guy Fawkes / Bonfire
-        (12, 25): "🎄",
-        (1, 1): "🎆",
-    }
+            (10, 31): "🎃",  # Halloween
+            (12, 25): "🎄",  # Christmas
+            (1, 1): "🎆",    # New Year
+        }
     for offset in range(7):
         day = TODAY + timedelta(days=offset)
         iso = day.isoformat()
         label = "Today" if offset == 0 else day.strftime("%a")
         date_num = day.day
-        day_events = sorted([m for m in meetings if m["date"] == iso], key=lambda m: m["time"])
+        day_events = sorted([m for m in meetings if m["date"] == iso], key=lambda m: (0 if m["time"] == "All Day" or not m["time"] else 1, m["time"] if m["time"] not in ("All Day", "") else ""), reverse=True)
         events_html = ""
         for m in day_events:
             loc = f' <span class="wloc">({m["loc"]})</span>' if m.get("loc") else ""
