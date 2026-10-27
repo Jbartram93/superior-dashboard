@@ -160,6 +160,12 @@ for ca in CORRECTIVE_ACTIONS:
     ca_rows.append(f'<div class="ca-row">{icon} <b>{ca["owner"]}</b> {ca["title"]} <span class="muted">({ca["days"]}d)</span></div>')
 ca_html = "\n".join(ca_rows) if ca_rows else '<div class="empty">No open items</div>'
 
+# Roadmap HTML
+roadmap_html = ""
+for phase in ROADMAP:
+    items_html = "".join(f'<li>{item}</li>' for item in phase["items"])
+    roadmap_html += f'<div class="rm-phase"><div class="rm-period">{phase["period"]}</div><ul class="rm-items">{items_html}</ul></div>'
+
 # Build HTML
 date_line = NOW.strftime("%A").upper() + " " + NOW.strftime("%B").upper() + " " + str(NOW.day)
 
@@ -201,6 +207,12 @@ h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
 .wloc{color:#64748b;font-size:9px}
 .ca-row{padding:4px 0;font-size:13px;border-bottom:1px solid #475569}
 .ca-row b{color:#f59e0b}
+.roadmap-grid{display:flex;gap:10px;flex-wrap:wrap}
+.rm-phase{background:#1e293b;border-radius:8px;padding:10px 12px;flex:1;min-width:140px}
+.rm-period{font-size:11px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;border-bottom:1px solid #475569;padding-bottom:4px}
+.rm-items{list-style:none;padding:0;margin:0}
+.rm-items li{font-size:12px;padding:3px 0;color:#e2e8f0;line-height:1.3}
+.rm-items li:before{content:"\\25B8";color:#38bdf8;margin-right:4px}
 .footer{color:#64748b;font-size:12px;margin-top:12px;text-align:center}
 """
 
@@ -231,6 +243,13 @@ html = f"""<!DOCTYPE html>
   <span class="quote-icon">"</span>
   <div class="quote-text">{q["q"]}</div>
   <div class="quote-author">- {q["a"]}</div>
+</div>
+
+<div class="card">
+  <h2>GREG'S 60-DAY ROADMAP</h2>
+  <div class="roadmap-grid">
+{roadmap_html}
+  </div>
 </div>
 
 <div class="card">
