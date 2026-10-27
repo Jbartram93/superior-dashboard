@@ -135,6 +135,14 @@ def action_list(items, color):
 # Meetings - manual from MEETINGS
 def build_week_calendar(meetings):
     days_html = ""
+    # Special day emoji map (month-day -> emoji)
+    special_days = {
+        (10, 31): "🎃",  # Halloween
+        (11, 1): "💀",   # Day of the Dead
+        (11, 5): "🎆",   # Guy Fawkes / Bonfire
+        (12, 25): "🎄",
+        (1, 1): "🎆",
+    }
     for offset in range(7):
         day = TODAY + timedelta(days=offset)
         iso = day.isoformat()
@@ -151,7 +159,10 @@ def build_week_calendar(meetings):
         if not events_html:
             events_html = '<div class="wevent empty">--</div>'
         today_class = ' wday-today' if offset == 0 else ''
-        days_html += f'<div class="wday{today_class}"><div class="wday-head">{label}<span class="wdate">{date_num}</span></div>{events_html}</div>'
+        # Check for special day icon
+        icon = special_days.get((day.month, day.day), "")
+        icon_html = f'<span class="day-icon">{icon}</span>' if icon else ""
+        days_html += f'<div class="wday{today_class}"><div class="wday-head">{label}{icon_html}<span class="wdate">{date_num}</span></div>{events_html}</div>'
     return f'<div class="week-grid">{days_html}</div>'
 
 # Top priorities
@@ -216,6 +227,7 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 .wday{flex:1;min-width:0;background:rgba(0,0,0,0.4);border-radius:6px;padding:6px 4px;border:1px solid rgba(255,0,255,0.1)}
 .wday-today{background:rgba(255,0,255,0.08);border:1px solid #ff00ff;box-shadow:0 0 12px rgba(255,0,255,0.2),inset 0 0 20px rgba(0,255,204,0.05)}
 .wday-head{font-size:10px;font-weight:700;color:#0066ff;text-transform:uppercase;text-align:center;margin-bottom:5px;text-shadow:0 0 5px rgba(0,102,255,0.3)}
+.day-icon{display:block;font-size:22px;line-height:1;margin-bottom:2px}
 .wdate{display:block;font-size:18px;font-weight:900;color:#ffcc00;margin-top:2px;text-shadow:0 0 8px rgba(255,204,0,0.3)}
 .wday-today .wday-head{color:#ff00ff}
 .wevent{font-size:9px;line-height:1.2;padding:2px 1px;border-bottom:1px solid rgba(255,0,255,0.1);margin-bottom:1px}
