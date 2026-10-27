@@ -183,8 +183,8 @@ date_line = NOW.strftime("%A").upper() + " " + NOW.strftime("%B").upper() + " " 
 
 CSS = """*{box-sizing:border-box;margin:0;padding:0}
 body{background:#1e293b;color:#e2e8f0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;padding:20px 24px;position:relative;overflow-x:hidden}
-body::before{content:"";position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:100px;background:url("https://shcomposites.com/wp-content/uploads/superior-huntingdon-composites-265.jpg") center/contain no-repeat;opacity:0.08;pointer-events:none;z-index:0}
-.card{background:#334155;border:1px solid #475569;border-radius:12px;padding:16px 20px;margin-bottom:16px;position:relative;z-index:1}
+
+.card{background:#334155;border:1px solid #475569;border-radius:12px;padding:16px 20px;margin-bottom:16px}
 h2{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#94a3b8;margin-bottom:10px;font-weight:700}
 h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
 .empty{color:#64748b;font-size:14px;margin:4px 0}
@@ -193,6 +193,7 @@ h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
 .header>div:nth-child(1){width:40%}
 .header>div:nth-child(2){width:35%}
 .header>div:nth-child(3){width:25%;text-align:right}
+.header-logo{height:36px;opacity:0.5;margin-bottom:4px}
 .clock{font-size:52px;font-weight:800;letter-spacing:-1.5px;color:#f8fafc}
 .clock small{font-size:26px;font-weight:700;margin-left:4px}
 .date-line{font-size:16px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin-top:4px}
@@ -247,7 +248,8 @@ html = f"""<!DOCTYPE html>
     <div class="date-line">{date_line}</div>
   </div>
   <div class="weather">{wx_html}</div>
-  <div>
+  <div style="text-align:right">
+    <img src="https://shcomposites.com/wp-content/uploads/superior-huntingdon-composites-265.jpg" class="header-logo" alt="SC">
     <div class="date-line">{LOCATION}</div>
   </div>
 </div>
