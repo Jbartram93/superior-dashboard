@@ -13,18 +13,22 @@ LOCATION = "Vanceburg, KY"
 HOME_COORDS = (38.386, -82.604)
 HOME_LABEL = "Vanceburg"
 
+# NAICS code for industry benchmark
+NAICS_CODE = "32619900"
+
 # INCIDENT MONTHLY COUNTS — Edit these
 INCIDENTS_2026 = {"Jan":0,"Feb":0,"Mar":0,"Apr":0,"May":0,"Jun":0,"Jul":0,"Aug":0,"Sep":0,"Oct":0,"Nov":0,"Dec":0}
 INCIDENTS_2025 = {"Jan":0,"Feb":0,"Mar":0,"Apr":0,"May":0,"Jun":0,"Jul":0,"Aug":0,"Sep":0,"Oct":0,"Nov":0,"Dec":0}
-INDUSTRY_BENCHMARK = 4.0  # NAICS 3272 — Glass & Glass Products (BLS, fiberglass/composites estimate)
-# Industry source: US manufacturing average = 2.7, glass products avg ~3.8-4.5
-# Verify exact NAICS 327212 figure at bls.gov/iif/tables.htm Table 1
+INDUSTRY_BENCHMARK = 3.3  # NAICS 32619900 — Other Plastics Product Manufacturing
+# NOTE: BLS data could not be directly retrieved (site blocking). This is a
+# conservative estimate based on known rates for related plastics NAICS codes
+# (326111=2.9, 326121=3.1, all mfg=2.7). Verify exact figure from loss runs.
 
 # DAILY QUOTES — one per day, rotates
 LEADERSHIP_QUOTES = [
     {"q":"The first responsibility of a leader is to define reality. The last is to say thank you.","a":"Max DePree"},
     {"q":"Leadership is not about being in charge. It is about taking care of those in your charge.","a":"Simon Sinek"},
-    {"q":"People don\'t care how much you know until they know how much you care.","a":"Theodore Roosevelt"},
+    {"q":"People don't care how much you know until they know how much you care.","a":"Theodore Roosevelt"},
     {"q":"Trust is built when someone is vulnerable and not taken advantage of.","a":"Bob Vanourek"},
     {"q":"Leaders eat last.","a":"Simon Sinek"},
     {"q":"Every incident is a failure of leadership somewhere up the chain.","a":"Unknown"},
@@ -70,12 +74,10 @@ CORRECTIVE_ACTIONS = [
     {"title":"Review LOTO procedures for oven area","status":"open","days":0,"owner":"Justin"},
 ]
 
-# MEETINGS — Manual entries (auto-sync via ICS + GitHub Actions rebuild coming)
+# MEETINGS — Text me to add/edit
 MEETINGS = [
-    {"date":"2026-10-27","time":"7:00 AM","title":"Toolbox Talk — Day shift","loc":"Floor"},
-    {"date":"2026-10-27","time":"8:30 AM","title":"Safety walk with Greg","loc":"Plant"},
-    {"date":"2026-10-28","time":"7:00 AM","title":"Toolbox Talk — Day shift","loc":"Floor"},
+    # {"date":"2026-10-28","time":"7:00 AM","title":"Toolbox Talk — Day shift","loc":"Floor"},
 ]
 
 # SETTINGS
-REFRESH_MINUTES = 30
+REFRESH_MINUTES = 30  # frame refreshes page every 30 min
