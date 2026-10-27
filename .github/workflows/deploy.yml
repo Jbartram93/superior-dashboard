@@ -12,7 +12,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "*/5 * * * *"   # rebuild every 5 min: ICS meetings, clock, weather
+    - cron: "*/30 * * * *"   # rebuild every 30 min: ICS meetings, clock, weather
 
 permissions:
   contents: read
