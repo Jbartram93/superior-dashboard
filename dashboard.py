@@ -41,20 +41,66 @@ q = LEADERSHIP_QUOTES[TODAY.timetuple().tm_yday % len(LEADERSHIP_QUOTES)]
 # Incident chart SVG
 months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 max_val = max(list(INCIDENTS_2026.values()) + list(INCIDENTS_2025.values()) + [5])
-chart_bars = []
-for i, m in enumerate(months):
-    x = 45 + i * 35
-    v26 = INCIDENTS_2026[m] or 0
-    v25 = INCIDENTS_2025[m] or 0
-    h26 = (v26 / max_val) * 120 if max_val else 0
-    h25 = (v25 / max_val) * 120 if max_val else 0
-    chart_bars.append(f'<rect x="{x}" y="{150 - h25}" width="10" height="{h25}" fill="#3b82f6" opacity="0.7"/>')
-    chart_bars.append(f'<rect x="{x + 12}" y="{150 - h26}" width="10" height="{h26}" fill="#f59e0b" opacity="0.85"/>')
-    chart_bars.append(f'<text x="{x + 5}" y="170" font-size="8" fill="#64748b" text-anchor="middle">{m[:3]}</text>')
-bench = 150 - (INDUSTRY_BENCHMARK / max_val) * 120 if max_val else 150
-chart_bars.insert(0, f'<line x1="40" y1="{bench}" x2="465" y2="{bench}" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/>')
-chart_bars.insert(0, f'<text x="465" y="{bench - 4}" font-size="9" fill="#ef4444" text-anchor="end">Industry {INDUSTRY_BENCHMARK}</text>')
-chart_svg = f'<svg width="480" height="180"><text x="40" y="15" font-size="9" fill="#64748b">2026</text><rect x="70" y="8" width="10" height="8" fill="#f59e0b"/><text x="100" y="15" font-size="9" fill="#64748b">2025</text><rect x="130" y="8" width="10" height="8" fill="#3b82f6"/><text x="160" y="15" font-size="9" fill="#64748b">Industry</text><rect x="190" y="8" width="10" height="8" fill="#ef4444"/>' + "".join(chart_bars) + '</svg>'
+# Build line chart — Power BI style
+# Points + lines for 2026, 2025, and a flat benchmark line
+def build_line_chart():
+    w, h = 520, 200
+    pad = {"t": 25, "r": 30, "b": 30, "l": 35}
+    cw = w - pad["l"] - pad["r"]
+    ch = h - pad["t"] - pad["b"]
+    all_vals = list(INCIDENTS_2026.values()) + list(INCIDENTS_2025.values()) + [INDUSTRY_BENCHMARK]
+    max_v = max(all_vals) if all_vals else 5
+    max_v = max(max_v, 5)
+    
+    def xpos(i):
+        return pad["l"] + (i / 11) * cw
+    def ypos(v):
+        return pad["t"] + ch - (v / (max_v * 1.2)) * ch
+    
+    # Grid lines
+    grid = ""
+    for g in range(0, int(max_v * 1.2) + 2):
+        gy = ypos(g)
+        grid += f'<line x1="{pad["l"]}" y1="{gy}" x2="{w - pad["r"]}" y2="{gy}" stroke="#475569" stroke-width="0.5"/>'
+        grid += f'<text x="{pad["l"] - 4}" y="{gy + 3}" font-size="8" fill="#64748b" text-anchor="end">{g}</text>'
+    
+    # 2025 line (blue, dashed)
+    pts25 = []
+    for i, m in enumerate(months):
+        pts25.append(f'{xpos(i)},{ypos(INCIDENTS_2025[m] or 0)}')
+    line25 = f'<polyline points="{" ".join(pts25)}" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3" opacity="0.7"/>'
+    
+    # 2026 line (amber, solid)
+    pts26 = []
+    for i, m in enumerate(months):
+        pts26.append(f'{xpos(i)},{ypos(INCIDENTS_2026[m] or 0)}')
+    line26 = f'<polyline points="{" ".join(pts26)}" fill="none" stroke="#f59e0b" stroke-width="2.5"/>'
+    
+    # 2026 dots
+    dots26 = ""
+    for i, m in enumerate(months):
+        v = INCIDENTS_2026[m] or 0
+        dots26 += f'<circle cx="{xpos(i)}" cy="{ypos(v)}" r="3.5" fill="#f59e0b" stroke="#1e293b" stroke-width="1"/>'
+    
+    # Industry benchmark flat line
+    by = ypos(INDUSTRY_BENCHMARK)
+    bench_line = f'<line x1="{pad["l"]}" y1="{by}" x2="{w - pad["r"]}" y2="{by}" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>'
+    bench_label = f'<text x="{w - pad["r"]}" y="{by - 4}" font-size="9" fill="#ef4444" text-anchor="end">Industry {INDUSTRY_BENCHMARK}</text>'
+    
+    # Month labels
+    month_labels = ""
+    for i, m in enumerate(months):
+        month_labels += f'<text x="{xpos(i)}" y="{h - 5}" font-size="8" fill="#64748b" text-anchor="middle">{m[:3]}</text>'
+    
+    # Legend
+    legend = f'<rect x="{pad["l"]}" y="6" width="10" height="3" fill="#f59e0b"/><text x="{pad["l"] + 14}" y="10" font-size="8" fill="#94a3b8">2026</text>'
+    legend += f'<rect x="{pad["l"] + 60}" y="6" width="10" height="3" fill="#3b82f6"/><text x="{pad["l"] + 74}" y="10" font-size="8" fill="#94a3b8">2025</text>'
+    legend += f'<line x1="{pad["l"] + 120}" y1="7" x2="{pad["l"] + 130}" y2="7" stroke="#ef4444" stroke-width="1.5"/><text x="{pad["l"] + 134}" y="10" font-size="8" fill="#94a3b8">Industry</text>'
+    
+    svg = f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}">{grid}{line25}{line26}{dots26}{bench_line}{bench_label}{month_labels}{legend}</svg>'
+    return svg
+
+chart_svg = build_line_chart()
 
 # Action board
 def action_list(items, color):
