@@ -228,7 +228,7 @@ html = f"""<!DOCTYPE html>
 </div>
 
 <div class="card chart-card">
-  <h2>INCIDENT TREND</h2>
+  <h2>YTD RECORDABLE COUNT</h2>
   {chart_svg}
 </div>
 
@@ -253,6 +253,7 @@ html = f"""<!DOCTYPE html>
 </div>
 
 <div class="footer">Built {NOW.strftime("%b %d, %I:%M %p")} ET · refreshes every {REFRESH_MINUTES} min · {HOME_LABEL}</div>
+<div class="muted" style="font-size:11px;margin-top:4px">TRIR needs total hours (from loss runs)</div>
 
 <script>
 (function(){{
