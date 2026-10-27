@@ -83,4 +83,4 @@ MEETINGS = [
 ICS_URL = "https://outlook.office365.com/owa/calendar/816390b4b0e44f5080019c66609de8d9@superiorcompositesco.com/9c00023c0c804ce085d37a48ff4fbb3a10100425901936832656/calendar.ics"
 
 # SETTINGS
-REFRESH_MINUTES = 5
+REFRESH_MINUTES = 30
