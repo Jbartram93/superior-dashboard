@@ -144,7 +144,10 @@ def build_week_calendar(meetings):
         events_html = ""
         for m in day_events:
             loc = f' <span class="wloc">({m["loc"]})</span>' if m.get("loc") else ""
-            events_html += f'<div class="wevent"><span class="wtime">{m["time"]}</span> {m["title"]}{loc}</div>'
+            if m["time"] == "All Day" or not m["time"]:
+                events_html += f'<div class="wevent all-day"><span class="wtime-all">ALL DAY</span> {m["title"]}</div>'
+            else:
+                events_html += f'<div class="wevent"><span class="wtime">{m["time"]}</span> {m["title"]}{loc}</div>'
         if not events_html:
             events_html = '<div class="wevent empty">--</div>'
         today_class = ' wday-today' if offset == 0 else ''
@@ -204,6 +207,8 @@ h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
 .wevent{font-size:10px;line-height:1.25;padding:3px 2px;border-bottom:1px solid #475569;margin-bottom:2px}
 .wevent:last-child{border-bottom:none}
 .wtime{font-weight:700;color:#38bdf8;display:block;font-size:9px}
+.wtime-all{font-weight:700;color:#8b5cf6;display:block;font-size:8px;text-transform:uppercase;letter-spacing:0.5px}
+.wevent.all-day{background:#2d1f4a;border-left:2px solid #8b5cf6;padding:4px 4px 4px 6px;margin-bottom:3px;border-radius:3px;font-size:10px}
 .wloc{color:#64748b;font-size:9px}
 .ca-row{padding:4px 0;font-size:13px;border-bottom:1px solid #475569}
 .ca-row b{color:#f59e0b}
