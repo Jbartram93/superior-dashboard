@@ -60,6 +60,17 @@ LEADERSHIP_QUOTES = [
     {"q":"If you want to build a culture of safety, you must first build a culture of trust.","a":"Unknown"},
 ]
 
+
+# TOP PRIORITIES — Text me to add/edit. These show on the dashboard.
+# Format: {"task": "...", "status": "open"/"done"}
+TOP_PRIORITIES = [
+    {"task": "SCC Production Call — listen for safety mentions", "status": "open"},
+    {"task": "Walk F team oven line — watch hands, guards, gloves", "status": "open"},
+    {"task": "Find new hire training checklist", "status": "open"},
+    {"task": "Send Jodi follow-up on loss runs / NAICS benchmark", "status": "open"},
+    {"task": "End of day: tell Greg one observation", "status": "open"},
+]
+
 # ACTIONS
 THIS_WEEK = [
     "Attend toolbox talks daily (7 AM)",
