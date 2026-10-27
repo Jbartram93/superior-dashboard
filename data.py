@@ -17,9 +17,26 @@ HOME_LABEL = "Vanceburg"
 NAICS_CODE = "32619900"
 
 # INCIDENT MONTHLY COUNTS — Edit these
-INCIDENTS_2026 = {"Jan":0,"Feb":0,"Mar":0,"Apr":0,"May":0,"Jun":0,"Jul":0,"Aug":0,"Sep":0,"Oct":0,"Nov":0,"Dec":0}
+INCIDENTS_2026 = {
+    "Jan": 1,  # Aaron Smith - loss time
+    "Feb": 0,
+    "Mar": 0,
+    "Apr": 0,
+    "May": 1,  # Breanna Pauley - recordable
+    "Jun": 0,
+    "Jul": 0,
+    "Aug": 0,
+    "Sep": 1,  # David Jordan - lost time
+    "Oct": 1,  # Drake Duncan - loss time
+    "Nov": 0,
+    "Dec": 0,
+}
 INCIDENTS_2025 = {"Jan":0,"Feb":0,"Mar":0,"Apr":0,"May":0,"Jun":0,"Jul":0,"Aug":0,"Sep":0,"Oct":0,"Nov":0,"Dec":0}
 INDUSTRY_BENCHMARK = 3.3  # NAICS 32619900 — Other Plastics Product Manufacturing
+# 2026 YTD Recordable Incidents (from Safety Alert list): 4
+# Jan: Aaron Smith (loss time), May: Breanna Pauley (recordable),
+# Sep: David Jordan (lost time), Oct: Drake Duncan (loss time)
+# UPDATE HOURS when you know 2026 YTD hours worked for TRIR calculation
 # NOTE: BLS data could not be directly retrieved (site blocking). This is a
 # conservative estimate based on known rates for related plastics NAICS codes
 # (326111=2.9, 326121=3.1, all mfg=2.7). Verify exact figure from loss runs.
@@ -76,7 +93,7 @@ CORRECTIVE_ACTIONS = [
 
 # MEETINGS — Text me to add/edit
 MEETINGS = [
-    # {"date":"2026-10-28","time":"7:00 AM","title":"Toolbox Talk — Day shift","loc":"Floor"},
+    # Text me to add/edit
 ]
 
 # SETTINGS
