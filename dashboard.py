@@ -21,72 +21,62 @@ def fetch(url):
 def human_time(dt):
     return dt.strftime("%I:%M %p").lstrip("0")
 
-# Weather
+# Weather — clean, just temp + icon tag
 wx_html = ""
 try:
     lat, lon = HOME_COORDS
-    url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m,weather_code&hourly=temperature_2m,precipitation_probability&temperature_unit=fahrenheit&forecast_days=2&time_zone=America%2FNew_York"
+    url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&forecast_days=1&time_zone=America%2FNew_York"
     data = fetch(url)
     temp = round(data["current"]["temperature_2m"])
-    times = data["hourly"]["time"]
-    temps = data["hourly"]["temperature_2m"]
-    probs = data["hourly"]["precipitation_probability"]
-    now_hr = NOW.strftime("%Y-%m-%dT%H:00")
-    start = times.index(now_hr) if now_hr in times else 0
-    cells = []
-    for i in range(start, min(start+6, len(times))):
-        h = datetime.fromisoformat(times[i])
-        cells.append(f'<div class="wx-hour"><b>{human_time(h).replace(":00","")}</b>{temps[i]:.0f}°<span>{probs[i] or 0}%</span></div>')
-    wx_html = f'<div class="wx-now">{temp}°</div><div class="wx-hours">{"".join(cells)}</div>'
+    code = data["current"]["weather_code"]
+    # Weather code to simple label
+    if code <= 1: tag = "Clear"
+    elif code <= 3: tag = "Cloudy"
+    elif code <= 48: tag = "Foggy"
+    elif code <= 57: tag = "Drizzle"
+    elif code <= 67: tag = "Rain"
+    elif code <= 77: tag = "Snow"
+    elif code <= 82: tag = "Rain"
+    elif code <= 86: tag = "Snow"
+    else: tag = "Storm"
+    hi = round(data["daily"]["temperature_2m_max"][0])
+    lo = round(data["daily"]["temperature_2m_min"][0])
+    rain = data["daily"]["precipitation_probability_max"][0] or 0
+    wx_html = f'<div class="wx-simple"><span class="wx-temp">{temp}°</span> <span class="wx-hilo">{hi}° / {lo}°</span> <span class="wx-rain">{rain}% rain</span></div>'
 except:
-    wx_html = '<div class="wx-now">--°</div>'
+    wx_html = '<div class="wx-simple">--°</div>'
 
 # ===================================================================
 # ICS CALENDAR FETCH — Pull live meetings from Outlook
 # ===================================================================
 
 def fetch_ics_meetings():
-    """Fetch and parse ICS calendar from Outlook. Returns list of meeting dicts."""
     import urllib.request, re
     from datetime import datetime, timedelta
     from data import ICS_URL
-    
     meetings = []
     try:
         req = urllib.request.Request(ICS_URL, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=15) as resp:
             ics_data = resp.read().decode("utf-8", errors="replace")
-        
-        # Split into individual VEVENT blocks
         events = re.split(r'BEGIN:VEVENT', ics_data)
-        
-        for evt in events[1:]:  # Skip everything before first VEVENT
-            # Extract fields
+        for evt in events[1:]:
             title_m = re.search(r'SUMMARY:(.*?)(?:\n|$)', evt, re.DOTALL)
             dtstart_m = re.search(r'DTSTART.*?:(\d{8})T?(\d{6})?', evt)
-            dtend_m = re.search(r'DTEND.*?:(\d{8})T?(\d{6})?', evt)
             loc_m = re.search(r'LOCATION:(.*?)(?:\n|$)', evt)
-            
             if not title_m or not dtstart_m:
                 continue
-            
             title = title_m.group(1).strip().replace('\\,', ',').replace('\n', ' ')
             date_str = dtstart_m.group(1)
             time_str = dtstart_m.group(2) if dtstart_m.group(2) else ""
             loc = loc_m.group(1).strip() if loc_m else ""
-            
-            # Parse date
             try:
                 evt_date = datetime.strptime(date_str, "%Y%m%d").date()
             except:
                 continue
-            
-            # Skip events in the past (older than yesterday)
             today = datetime.now().date()
             if evt_date < today - timedelta(days=1):
                 continue
-            
-            # Format time
             if time_str:
                 try:
                     t = datetime.strptime(time_str, "%H%M%S")
@@ -95,22 +85,12 @@ def fetch_ics_meetings():
                     time_fmt = "All day"
             else:
                 time_fmt = "All day"
-            
-            meetings.append({
-                "date": evt_date.isoformat(),
-                "time": time_fmt,
-                "title": title,
-                "loc": loc
-            })
-        
-        # Sort by date then time
+            meetings.append({"date": evt_date.isoformat(), "time": time_fmt, "title": title, "loc": loc})
         def sort_key(m):
             return (m["date"], m["time"])
         meetings.sort(key=sort_key)
-        
     except Exception as e:
         print(f"ICS fetch error: {e}")
-    
     return meetings
 
 # Quote of the day
@@ -138,23 +118,36 @@ chart_svg = f'<svg width="480" height="180"><text x="40" y="15" font-size="9" fi
 def action_list(items, color):
     return "\n".join(f'<div class="action-row" style="border-left:3px solid {color}"><span>{i}</span></div>' for i in items)
 
-# Meetings — ICS-synced + manual fallback
+# Meetings — Weekly Calendar View
 ics_meetings = fetch_ics_meetings()
 all_meetings = ics_meetings if len(ics_meetings) >= 2 else MEETINGS
-if len(ics_meetings) >= 2:
-    print(f"ICS: {len(ics_meetings)} meetings loaded")
-else:
-    print(f"ICS failed/empty — using {len(MEETINGS)} manual meetings")
-meeting_rows = []
-for offset in range(7):
-    day = TODAY + timedelta(days=offset)
-    iso = day.isoformat()
-    label = "Today" if offset == 0 else day.strftime("%a")
-    day_meetings = sorted([m for m in all_meetings if m["date"] == iso], key=lambda m: m["time"])
-    for m in day_meetings:
-        loc = f' <span class="loc">({m["loc"]})</span>' if m.get("loc") else ""
-        meeting_rows.append(f'<div class="meeting-row"><b>{label}</b> {m["time"]} - {m["title"]}{loc}</div>')
-meeting_html = "\n".join(meeting_rows) if meeting_rows else '<div class="empty">No upcoming meetings</div>'
+
+# Build a 7-day grid: each day column has its events
+def build_week_calendar(meetings):
+    """Render a weekly calendar grid — each day is a column, events listed below."""
+    days_html = ""
+    for offset in range(7):
+        day = TODAY + timedelta(days=offset)
+        iso = day.isoformat()
+        label = "Today" if offset == 0 else day.strftime("%a")
+        # Show date number below day name
+        date_num = day.day
+        
+        day_events = sorted([m for m in meetings if m["date"] == iso], key=lambda m: m["time"])
+        events_html = ""
+        for m in day_events:
+            loc = f' <span class="wloc">({m["loc"]})</span>' if m.get("loc") else ""
+            events_html += f'<div class="wevent"><span class="wtime">{m["time"]}</span> {m["title"]}{loc}</div>'
+        
+        if not events_html:
+            events_html = '<div class="wevent empty">—</div>'
+        
+        today_class = ' wday-today' if offset == 0 else ''
+        days_html += f'<div class="wday{today_class}"><div class="wday-head">{label}<span class="wdate">{date_num}</span></div>{events_html}</div>'
+    
+    return f'<div class="week-grid">{days_html}</div>'
+
+meeting_html = build_week_calendar(all_meetings)
 
 # Corrective actions
 ca_rows = []
@@ -174,18 +167,16 @@ h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
 .empty{color:#64748b;font-size:14px;margin:4px 0}
 .muted{color:#64748b;font-size:12px}
 .header{display:flex;align-items:flex-start;margin-bottom:16px}
-.header>div:nth-child(1){width:28%}
-.header>div:nth-child(2){width:44%}
-.header>div:nth-child(3){width:28%;text-align:right}
+.header>div:nth-child(1){width:40%}
+.header>div:nth-child(2){width:35%}
+.header>div:nth-child(3){width:25%;text-align:right}
 .clock{font-size:52px;font-weight:800;letter-spacing:-1.5px;color:#f8fafc}
 .clock small{font-size:26px;font-weight:700;margin-left:4px}
 .date-line{font-size:16px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin-top:4px}
-.role-line{font-size:13px;color:#f59e0b;font-weight:600;margin-top:2px}
-.wx-now{font-size:36px;font-weight:800;color:#f8fafc}
-.wx-hours{display:flex;gap:10px;margin:4px 0}
-.wx-hour{font-size:12px;color:#94a3b8}
-.wx-hour b{display:block;color:#e2e8f0}
-.wx-hour span{color:#38bdf8}
+.wx-simple{font-size:14px;color:#94a3b8}
+.wx-temp{font-size:28px;font-weight:700;color:#f8fafc;margin-right:8px}
+.wx-hilo{color:#94a3b8;margin-right:12px}
+.wx-rain{color:#38bdf8}
 .quote-card{border-left:4px solid #f59e0b}
 .quote-icon{font-size:28px;color:#f59e0b;line-height:1;float:left;margin-right:8px}
 .quote-text{font-size:18px;font-style:italic;color:#f1f5f9;margin-bottom:4px;line-height:1.35}
@@ -194,9 +185,17 @@ h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
 .action-grid{display:flex;gap:14px}
 .action-col{flex:1;min-width:0}
 .action-row{padding:6px 10px 6px 8px;margin:4px 0;font-size:13px;line-height:1.3;border-radius:4px;background:#1e293b}
-.meeting-row{padding:4px 0;font-size:14px;border-bottom:1px solid #475569}
-.meeting-row b{display:inline-block;min-width:46px;color:#94a3b8}
-.loc{color:#64748b;font-size:12px}
+/* Weekly Calendar Grid */
+.week-grid{display:flex;gap:6px}
+.wday{flex:1;min-width:0;background:#1e293b;border-radius:8px;padding:8px 6px}
+.wday-today{background:#2d3a4f;border:1px solid #f59e0b}
+.wday-head{font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;text-align:center;margin-bottom:6px}
+.wdate{display:block;font-size:20px;font-weight:800;color:#e2e8f0;margin-top:2px}
+.wday-today .wday-head{color:#f59e0b}
+.wevent{font-size:10px;line-height:1.25;padding:3px 2px;border-bottom:1px solid #475569;margin-bottom:2px}
+.wevent:last-child{border-bottom:none}
+.wtime{font-weight:700;color:#38bdf8;display:block;font-size:9px}
+.wloc{color:#64748b;font-size:9px}
 .ca-row{padding:4px 0;font-size:13px;border-bottom:1px solid #475569}
 .ca-row b{color:#f59e0b}
 .footer{color:#64748b;font-size:12px;margin-top:12px;text-align:center}
@@ -206,14 +205,13 @@ html = f"""<!DOCTYPE html>
 <html><head>
 <meta charset="utf-8">
 <meta http-equiv="refresh" content="{REFRESH_MINUTES*60}">
-<title>EHS Manager - Superior</title>
+<title>Superior Dashboard</title>
 <style>{CSS}</style>
 </head><body>
 <div class="header">
   <div>
     <div class="clock"><span id="c">{NOW.strftime("%I:%M").lstrip("0")}<small>{NOW.strftime("%p")}</small></span></div>
     <div class="date-line">{date_line}</div>
-    <div class="role-line">{ROLE_TITLE} - {COMPANY_NAME}</div>
   </div>
   <div class="weather">{wx_html}</div>
   <div>
@@ -241,18 +239,17 @@ html = f"""<!DOCTYPE html>
   </div>
 </div>
 
-<div style="display:flex;gap:16px;">
-  <div style="flex:2;" class="card">
-    <h2>MEETINGS</h2>
-    {meeting_html}
-  </div>
-  <div style="flex:1;" class="card">
-    <h2>CORRECTIVE ACTIONS</h2>
-    {ca_html}
-  </div>
+<div class="card">
+  <h2>WEEKLY CALENDAR</h2>
+  {meeting_html}
 </div>
 
-<div class="footer">Built {NOW.strftime("%b %d, %I:%M %p")} ET - refreshes every {REFRESH_MINUTES} min - {HOME_LABEL}</div>
+<div class="card">
+  <h2>CORRECTIVE ACTIONS</h2>
+  {ca_html}
+</div>
+
+<div class="footer">Built {NOW.strftime("%b %d, %I:%M %p")} ET · refreshes every {REFRESH_MINUTES} min · {HOME_LABEL}</div>
 
 <script>
 (function(){{
