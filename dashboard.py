@@ -154,6 +154,15 @@ def build_week_calendar(meetings):
         days_html += f'<div class="wday{today_class}"><div class="wday-head">{label}<span class="wdate">{date_num}</span></div>{events_html}</div>'
     return f'<div class="week-grid">{days_html}</div>'
 
+# Top priorities
+prio_html = ""
+for p in TOP_PRIORITIES:
+    icon = "\u2611" if p["status"] == "done" else "\u25a1"
+    cls = " prio-done" if p["status"] == "done" else ""
+    prio_html += f'<div class="prio-row{cls}"><span class="prio-icon">{icon}</span> {p["task"]}</div>'
+if not prio_html:
+    prio_html = '<div class="empty">No priorities set. Text me!</div>'
+
 meeting_html = build_week_calendar(MEETINGS)
 
 # Corrective actions
@@ -218,6 +227,9 @@ h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
 .rm-items{list-style:none;padding:0;margin:0}
 .rm-items li{font-size:12px;padding:3px 0;color:#e2e8f0;line-height:1.3}
 .rm-items li:before{content:"\\25B8";color:#38bdf8;margin-right:4px}
+.prio-row{padding:5px 8px;margin:3px 0;font-size:13px;background:#1e293b;border-radius:6px;border-left:3px solid #f59e0b}
+.prio-row.prio-done{opacity:0.5;border-left-color:#22c55e}
+.prio-icon{margin-right:6px;font-size:14px}
 .footer{color:#64748b;font-size:12px;margin-top:12px;text-align:center}
 """
 
@@ -237,6 +249,11 @@ html = f"""<!DOCTYPE html>
   <div>
     <div class="date-line">{LOCATION}</div>
   </div>
+</div>
+
+<div class="card">
+  <h2>TOP PRIORITIES</h2>
+  {prio_html}
 </div>
 
 <div class="card">
