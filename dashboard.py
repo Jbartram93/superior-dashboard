@@ -228,7 +228,7 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 .day-icon{display:block;font-size:22px;line-height:1;margin-bottom:2px}
 .wdate{display:block;font-size:18px;font-weight:900;color:#ffcc00;margin-top:2px;text-shadow:0 0 8px rgba(255,204,0,0.3)}
 .wday-today .wday-head{color:#ff00ff}
-.wevent{font-size:9px;line-height:1.2;padding:2px 1px;border-bottom:1px solid rgba(255,0,255,0.1);margin-bottom:1px}
+.wevent{font-size:11px;line-height:1.3;padding:3px 2px;border-bottom:1px solid rgba(255,0,255,0.1);margin-bottom:2px}
 .wevent:last-child{border-bottom:none}
 .wtime{font-weight:700;color:#00ffff;display:block;font-size:8px;text-shadow:0 0 5px rgba(0,255,255,0.4)}
 .wtime-all{font-weight:700;color:#ff00ff;display:block;font-size:7px;text-transform:uppercase;letter-spacing:1px}
