@@ -183,7 +183,7 @@ date_line = NOW.strftime("%A").upper() + " " + NOW.strftime("%B").upper() + " " 
 
 CSS = """*{box-sizing:border-box;margin:0;padding:0}
 body{background:#1e293b;color:#e2e8f0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;padding:20px 24px;position:relative;overflow-x:hidden}
-body::before{content:"";position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(148,163,184,0.04) 0%,transparent 70%);border-radius:50%;pointer-events:none;z-index:0}
+body::before{content:"";position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:100px;background:url("https://shcomposites.com/wp-content/uploads/superior-huntingdon-composites-265.jpg") center/contain no-repeat;opacity:0.08;pointer-events:none;z-index:0}
 .card{background:#334155;border:1px solid #475569;border-radius:12px;padding:16px 20px;margin-bottom:16px;position:relative;z-index:1}
 h2{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#94a3b8;margin-bottom:10px;font-weight:700}
 h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
