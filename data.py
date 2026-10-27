@@ -16,7 +16,9 @@ HOME_LABEL = "Vanceburg"
 # INCIDENT MONTHLY COUNTS — Edit these
 INCIDENTS_2026 = {"Jan":0,"Feb":0,"Mar":0,"Apr":0,"May":0,"Jun":0,"Jul":0,"Aug":0,"Sep":0,"Oct":0,"Nov":0,"Dec":0}
 INCIDENTS_2025 = {"Jan":0,"Feb":0,"Mar":0,"Apr":0,"May":0,"Jun":0,"Jul":0,"Aug":0,"Sep":0,"Oct":0,"Nov":0,"Dec":0}
-INDUSTRY_BENCHMARK = 3.5
+INDUSTRY_BENCHMARK = 4.0  # NAICS 3272 — Glass & Glass Products (BLS, fiberglass/composites estimate)
+# Industry source: US manufacturing average = 2.7, glass products avg ~3.8-4.5
+# Verify exact NAICS 327212 figure at bls.gov/iif/tables.htm Table 1
 
 # DAILY QUOTES — one per day, rotates
 LEADERSHIP_QUOTES = [
