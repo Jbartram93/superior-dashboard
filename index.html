@@ -2,7 +2,7 @@
 <html><head>
 <meta charset="utf-8">
 <meta http-equiv="refresh" content="300">
-<title>EHS Manager - Superior</title>
+<title>Superior Dashboard</title>
 <style>*{box-sizing:border-box;margin:0;padding:0}
 body{background:#1e293b;color:#e2e8f0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;padding:20px 24px}
 .card{background:#334155;border:1px solid #475569;border-radius:12px;padding:16px 20px;margin-bottom:16px}
@@ -11,18 +11,16 @@ h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
 .empty{color:#64748b;font-size:14px;margin:4px 0}
 .muted{color:#64748b;font-size:12px}
 .header{display:flex;align-items:flex-start;margin-bottom:16px}
-.header>div:nth-child(1){width:28%}
-.header>div:nth-child(2){width:44%}
-.header>div:nth-child(3){width:28%;text-align:right}
+.header>div:nth-child(1){width:40%}
+.header>div:nth-child(2){width:35%}
+.header>div:nth-child(3){width:25%;text-align:right}
 .clock{font-size:52px;font-weight:800;letter-spacing:-1.5px;color:#f8fafc}
 .clock small{font-size:26px;font-weight:700;margin-left:4px}
 .date-line{font-size:16px;font-weight:600;letter-spacing:1.5px;color:#94a3b8;margin-top:4px}
-.role-line{font-size:13px;color:#f59e0b;font-weight:600;margin-top:2px}
-.wx-now{font-size:36px;font-weight:800;color:#f8fafc}
-.wx-hours{display:flex;gap:10px;margin:4px 0}
-.wx-hour{font-size:12px;color:#94a3b8}
-.wx-hour b{display:block;color:#e2e8f0}
-.wx-hour span{color:#38bdf8}
+.wx-simple{font-size:14px;color:#94a3b8}
+.wx-temp{font-size:28px;font-weight:700;color:#f8fafc;margin-right:8px}
+.wx-hilo{color:#94a3b8;margin-right:12px}
+.wx-rain{color:#38bdf8}
 .quote-card{border-left:4px solid #f59e0b}
 .quote-icon{font-size:28px;color:#f59e0b;line-height:1;float:left;margin-right:8px}
 .quote-text{font-size:18px;font-style:italic;color:#f1f5f9;margin-bottom:4px;line-height:1.35}
@@ -31,9 +29,17 @@ h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
 .action-grid{display:flex;gap:14px}
 .action-col{flex:1;min-width:0}
 .action-row{padding:6px 10px 6px 8px;margin:4px 0;font-size:13px;line-height:1.3;border-radius:4px;background:#1e293b}
-.meeting-row{padding:4px 0;font-size:14px;border-bottom:1px solid #475569}
-.meeting-row b{display:inline-block;min-width:46px;color:#94a3b8}
-.loc{color:#64748b;font-size:12px}
+/* Weekly Calendar Grid */
+.week-grid{display:flex;gap:6px}
+.wday{flex:1;min-width:0;background:#1e293b;border-radius:8px;padding:8px 6px}
+.wday-today{background:#2d3a4f;border:1px solid #f59e0b}
+.wday-head{font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;text-align:center;margin-bottom:6px}
+.wdate{display:block;font-size:20px;font-weight:800;color:#e2e8f0;margin-top:2px}
+.wday-today .wday-head{color:#f59e0b}
+.wevent{font-size:10px;line-height:1.25;padding:3px 2px;border-bottom:1px solid #475569;margin-bottom:2px}
+.wevent:last-child{border-bottom:none}
+.wtime{font-weight:700;color:#38bdf8;display:block;font-size:9px}
+.wloc{color:#64748b;font-size:9px}
 .ca-row{padding:4px 0;font-size:13px;border-bottom:1px solid #475569}
 .ca-row b{color:#f59e0b}
 .footer{color:#64748b;font-size:12px;margin-top:12px;text-align:center}
@@ -41,11 +47,10 @@ h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
 </head><body>
 <div class="header">
   <div>
-    <div class="clock"><span id="c">10:26<small>AM</small></span></div>
+    <div class="clock"><span id="c">10:42<small>AM</small></span></div>
     <div class="date-line">TUESDAY OCTOBER 27</div>
-    <div class="role-line">EHS Manager - Superior Huntingdon Composites</div>
   </div>
-  <div class="weather"><div class="wx-now">54°</div><div class="wx-hours"><div class="wx-hour"><b>10 AM</b>45°<span>0%</span></div><div class="wx-hour"><b>11 AM</b>44°<span>0%</span></div><div class="wx-hour"><b>12 PM</b>44°<span>0%</span></div><div class="wx-hour"><b>1 PM</b>46°<span>0%</span></div><div class="wx-hour"><b>2 PM</b>53°<span>0%</span></div><div class="wx-hour"><b>3 PM</b>59°<span>0%</span></div></div></div>
+  <div class="weather"><div class="wx-simple"><span class="wx-temp">55°</span> <span class="wx-hilo">72° / 44°</span> <span class="wx-rain">0% rain</span></div></div>
   <div>
     <div class="date-line">Vanceburg, KY</div>
   </div>
@@ -83,23 +88,20 @@ h3{font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:1px}
   </div>
 </div>
 
-<div style="display:flex;gap:16px;">
-  <div style="flex:2;" class="card">
-    <h2>MEETINGS</h2>
-    <div class="meeting-row"><b>Fri</b> 1:00 PM - Weekly Planning Meeting - Maint and Furnace Techs <span class="loc">(Vanceburg Conference Room 1)</span></div>
-<div class="meeting-row"><b>Fri</b> 1:30 PM - Monthly Maintenance Meeting <span class="loc">(Vanceburg Conference Room 1)</span></div>
-<div class="meeting-row"><b>Fri</b> 2:30 PM - Projects Meeting (Directly following Maint Meeting) <span class="loc">(Vanceburg Conference Room 1)</span></div>
-  </div>
-  <div style="flex:1;" class="card">
-    <h2>CORRECTIVE ACTIONS</h2>
-    <div class="ca-row">🟡 <b>Justin</b> Complete 2026 incident review & RCA <span class="muted">(2d)</span></div>
+<div class="card">
+  <h2>WEEKLY CALENDAR</h2>
+  <div class="week-grid"><div class="wday wday-today"><div class="wday-head">Today<span class="wdate">27</span></div><div class="wevent empty">—</div></div><div class="wday"><div class="wday-head">Wed<span class="wdate">28</span></div><div class="wevent empty">—</div></div><div class="wday"><div class="wday-head">Thu<span class="wdate">29</span></div><div class="wevent empty">—</div></div><div class="wday"><div class="wday-head">Fri<span class="wdate">30</span></div><div class="wevent"><span class="wtime">1:00 PM</span> Weekly Planning Meeting - Maint and Furnace Techs <span class="wloc">(Vanceburg Conference Room 1)</span></div><div class="wevent"><span class="wtime">1:30 PM</span> Monthly Maintenance Meeting <span class="wloc">(Vanceburg Conference Room 1)</span></div><div class="wevent"><span class="wtime">2:30 PM</span> Projects Meeting (Directly following Maint Meeting) <span class="wloc">(Vanceburg Conference Room 1)</span></div></div><div class="wday"><div class="wday-head">Sat<span class="wdate">31</span></div><div class="wevent empty">—</div></div><div class="wday"><div class="wday-head">Sun<span class="wdate">1</span></div><div class="wevent empty">—</div></div><div class="wday"><div class="wday-head">Mon<span class="wdate">2</span></div><div class="wevent empty">—</div></div></div>
+</div>
+
+<div class="card">
+  <h2>CORRECTIVE ACTIONS</h2>
+  <div class="ca-row">🟡 <b>Justin</b> Complete 2026 incident review & RCA <span class="muted">(2d)</span></div>
 <div class="ca-row">🔴 <b>Justin</b> Rebuild Oven Operator JSA — ownership & review structure <span class="muted">(1d)</span></div>
 <div class="ca-row">🔴 <b>Justin</b> Build training matrix per role <span class="muted">(1d)</span></div>
 <div class="ca-row">🔴 <b>Justin</b> Review LOTO procedures for oven area <span class="muted">(0d)</span></div>
-  </div>
 </div>
 
-<div class="footer">Built Oct 27, 10:26 AM ET - refreshes every 5 min - Vanceburg</div>
+<div class="footer">Built Oct 27, 10:42 AM ET · refreshes every 5 min · Vanceburg</div>
 
 <script>
 (function(){
