@@ -92,9 +92,7 @@ CORRECTIVE_ACTIONS = [
 ]
 
 # MEETINGS — Text me to add/edit
-MEETINGS = [
-    # Text me to add/edit
-]
+MEETINGS = []
 
 # SETTINGS
 REFRESH_MINUTES = 30  # frame refreshes page every 30 min
