@@ -38,6 +38,7 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 .wday{flex:1;min-width:0;background:rgba(0,0,0,0.4);border-radius:6px;padding:6px 4px;border:1px solid rgba(255,0,255,0.1)}
 .wday-today{background:rgba(255,0,255,0.08);border:1px solid #ff00ff;box-shadow:0 0 12px rgba(255,0,255,0.2),inset 0 0 20px rgba(0,255,204,0.05)}
 .wday-head{font-size:10px;font-weight:700;color:#0066ff;text-transform:uppercase;text-align:center;margin-bottom:5px;text-shadow:0 0 5px rgba(0,102,255,0.3)}
+.day-icon{display:block;font-size:22px;line-height:1;margin-bottom:2px}
 .wdate{display:block;font-size:18px;font-weight:900;color:#ffcc00;margin-top:2px;text-shadow:0 0 8px rgba(255,204,0,0.3)}
 .wday-today .wday-head{color:#ff00ff}
 .wevent{font-size:9px;line-height:1.2;padding:2px 1px;border-bottom:1px solid rgba(255,0,255,0.1);margin-bottom:1px}
@@ -62,7 +63,7 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 </head><body>
 <div class="header">
   <div>
-    <div class="clock"><span id="c">3:31<small>PM</small></span></div>
+    <div class="clock"><span id="c">3:33<small>PM</small></span></div>
     <div class="date-line">TUESDAY OCTOBER 27</div>
   </div>
   <div class="weather"><div class="wx-simple"><span class="wx-temp">73°</span> <span class="wx-hilo">73° / 44°</span> <span class="wx-rain">0% rain</span></div></div>
@@ -79,7 +80,7 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 
 <div class="card">
   <h2>WEEKLY CALENDAR</h2>
-  <div class="week-grid"><div class="wday wday-today"><div class="wday-head">Today<span class="wdate">27</span></div><div class="wevent empty">--</div></div><div class="wday"><div class="wday-head">Wed<span class="wdate">28</span></div><div class="wevent"><span class="wtime">12:00 PM</span> Chili Cookout <span class="wloc">(Break Room)</span></div><div class="wevent"><span class="wtime">9:00 AM</span> SCC Production Call (Teams) <span class="wloc">(Teams)</span></div></div><div class="wday"><div class="wday-head">Thu<span class="wdate">29</span></div><div class="wevent"><span class="wtime">10:30 AM</span> Safety Walkthrough</div><div class="wevent all-day"><span class="wtime-all">ALL DAY</span> Board of Directors Site Visit</div></div><div class="wday"><div class="wday-head">Fri<span class="wdate">30</span></div><div class="wevent"><span class="wtime">1:00 PM</span> Weekly Planning Meeting <span class="wloc">(Conf Room)</span></div><div class="wevent"><span class="wtime">1:30 PM</span> Monthly Maintenance Meeting <span class="wloc">(Conf Room)</span></div><div class="wevent"><span class="wtime">2:30 PM</span> Projects Meeting <span class="wloc">(Conf Room)</span></div></div><div class="wday"><div class="wday-head">Sat<span class="wdate">31</span></div><div class="wevent all-day"><span class="wtime-all">ALL DAY</span> Trick or Treat</div></div><div class="wday"><div class="wday-head">Sun<span class="wdate">1</span></div><div class="wevent empty">--</div></div><div class="wday"><div class="wday-head">Mon<span class="wdate">2</span></div><div class="wevent empty">--</div></div></div>
+  <div class="week-grid"><div class="wday wday-today"><div class="wday-head">Today<span class="wdate">27</span></div><div class="wevent empty">--</div></div><div class="wday"><div class="wday-head">Wed<span class="wdate">28</span></div><div class="wevent"><span class="wtime">12:00 PM</span> Chili Cookout <span class="wloc">(Break Room)</span></div><div class="wevent"><span class="wtime">9:00 AM</span> SCC Production Call (Teams) <span class="wloc">(Teams)</span></div></div><div class="wday"><div class="wday-head">Thu<span class="wdate">29</span></div><div class="wevent"><span class="wtime">10:30 AM</span> Safety Walkthrough</div><div class="wevent all-day"><span class="wtime-all">ALL DAY</span> Board of Directors Site Visit</div></div><div class="wday"><div class="wday-head">Fri<span class="wdate">30</span></div><div class="wevent"><span class="wtime">1:00 PM</span> Weekly Planning Meeting <span class="wloc">(Conf Room)</span></div><div class="wevent"><span class="wtime">1:30 PM</span> Monthly Maintenance Meeting <span class="wloc">(Conf Room)</span></div><div class="wevent"><span class="wtime">2:30 PM</span> Projects Meeting <span class="wloc">(Conf Room)</span></div></div><div class="wday"><div class="wday-head">Sat<span class="day-icon">🎃</span><span class="wdate">31</span></div><div class="wevent all-day"><span class="wtime-all">ALL DAY</span> 🎃 Trick or Treat 🎃</div></div><div class="wday"><div class="wday-head">Sun<span class="day-icon">💀</span><span class="wdate">1</span></div><div class="wevent empty">--</div></div><div class="wday"><div class="wday-head">Mon<span class="wdate">2</span></div><div class="wevent empty">--</div></div></div>
 </div>
 
 <div class="card quote-card">
@@ -124,7 +125,7 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 <div class="ca-row">🔴 <b>Justin</b> Review LOTO procedures for oven area <span class="muted">(0d)</span></div>
 </div>
 
-<div class="footer">Built Oct 27, 03:31 PM ET · refreshes every 30 min · Vanceburg</div>
+<div class="footer">Built Oct 27, 03:33 PM ET · refreshes every 30 min · Vanceburg</div>
 
 <script>
 (function(){
