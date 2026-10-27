@@ -77,7 +77,6 @@ THIS_WEEK = [
     "Review 2026 incidents — top 3 patterns",
     "Shadow oven operator training — bring JSAs",
     "Meet each shift supervisor informally",
-    "Walk the floor 30+ min daily",
 ]
 THIS_MONTH = [
     "JSA audit & rewrite kickoff meetings",
