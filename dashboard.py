@@ -219,15 +219,20 @@ html = f"""<!DOCTYPE html>
   </div>
 </div>
 
-<div class="card quote-card">
-  <span class="quote-icon">"</span>
-  <div class="quote-text">{q["q"]}</div>
-  <div class="quote-author">- {q["a"]}</div>
+<div class="card">
+  <h2>WEEKLY CALENDAR</h2>
+  {meeting_html}
 </div>
 
 <div class="card chart-card">
   <h2>INCIDENT TREND</h2>
   {chart_svg}
+</div>
+
+<div class="card quote-card">
+  <span class="quote-icon">"</span>
+  <div class="quote-text">{q["q"]}</div>
+  <div class="quote-author">- {q["a"]}</div>
 </div>
 
 <div class="card">
