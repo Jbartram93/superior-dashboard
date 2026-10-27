@@ -246,7 +246,7 @@ html = f"""<!DOCTYPE html>
 </div>
 
 <div class="card">
-  <h2>GREG'S 60-DAY ROADMAP</h2>
+  <h2>60-DAY ROADMAP</h2>
   <div class="roadmap-grid">
 {roadmap_html}
   </div>
