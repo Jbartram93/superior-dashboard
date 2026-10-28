@@ -58,7 +58,22 @@ LEADERSHIP_QUOTES = [
     {"q":"Management is about arranging and telling. Leadership is about nurturing and enhancing.","a":"Tom Peters"},
     {"q":"The best way to find yourself is to lose yourself in the service of others.","a":"Mahatma Gandhi"},
     {"q":"If you want to build a culture of safety, you must first build a culture of trust.","a":"Unknown"},
-]
+        # Pause & Think prompts — your core safety philosophy
+        {"q":"Before you act, ask: am I doing this properly?","a":"Pause & Think"},
+        {"q":"The pause is a strength, not a weakness.","a":"Pause & Think"},
+        {"q":"Autopilot gets people hurt. Stay intentional.","a":"Pause & Think"},
+        {"q":"Slow is smooth, smooth is safe.","a":"Pause & Think"},
+        {"q":"Safety is the pause between impulse and action.","a":"Pause & Think"},
+        {"q":"No task is so urgent it can't be done safely.","a":"Pause & Think"},
+        {"q":"Fear hides near misses. Trust reveals them.","a":"Pause & Think"},
+        {"q":"The safest worker is the one who stops and asks the question.","a":"Pause & Think"},
+        {"q":"Reward the honest pause, not the silent rush.","a":"Pause & Think"},
+        {"q":"An incident starts long before the machine moves.","a":"Pause & Think"},
+        {"q":"You get the behavior you reward and tolerate.","a":"Alan Mulally — One Ford"},
+        {"q":"Red is not bad. Red means you showed me a problem so we can fix it together. Hiding red is what gets us all fired.","a":"Alan Mulally"},
+        {"q":"Nobody checks the weather forecast when it's sunny. Check the risk before the work, not after.","a":"Pause & Think"},
+        {"q":"The best time to prevent an incident was before it happened. The second best is now.","a":"Pause & Think"},
+    ]
 
 
 # TOP PRIORITIES — Text me to add/edit. These show on the dashboard.
@@ -109,10 +124,11 @@ ROADMAP = [
         "Deep dive training gaps",
     ]},
     {"period": "Month 2", "items": [
-        "JSA audit team meetings",
-        "Present observations & recommendations",
-        "Build incident pattern analysis",
-    ]},
+            "JSA audit team meetings",
+            "Present observations & recommendations",
+            "Build incident pattern analysis",
+            "Pause & Think culture — toolbox talks as questions",
+        ]},
     {"period": "Longer-term", "items": [
         "Confined Space trainer cert",
         "LOTO trainer cert",
