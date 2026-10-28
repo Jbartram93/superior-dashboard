@@ -37,6 +37,10 @@ except:
 
 # Quote of the day
 q = LEADERSHIP_QUOTES[TODAY.timetuple().tm_yday % len(LEADERSHIP_QUOTES)]
+is_pause = q.get("a","").lower() == "pause & think"
+quote_icon = "💭" if is_pause else '"'
+quote_cls = " quote-card-pause" if is_pause else ""
+quote_label = f'<div class="muted" style="font-size:11px;margin-bottom:4px;letter-spacing:1px;text-transform:uppercase;color:#ffcc00">Pause &amp; Think</div>' if is_pause else ""
 
 # Incident chart SVG
 months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
@@ -213,6 +217,7 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 .wx-rain{color:#0066ff;text-shadow:0 0 8px rgba(0,102,255,0.4)}
 .header-logo{height:36px;opacity:0.6;margin-bottom:4px;filter:drop-shadow(0 0 8px #ff00ff) drop-shadow(0 0 3px #00ffcc)}
 .quote-card{border-left:4px solid #ffcc00;background:linear-gradient(135deg,rgba(10,5,30,0.88) 60%,rgba(255,204,0,0.05))}
+.quote-card-pause{border-left:4px solid #00ffcc;background:linear-gradient(135deg,rgba(10,5,30,0.88) 55%,rgba(0,255,204,0.08));box-shadow:0 0 18px rgba(0,255,204,0.15)}
 .quote-icon{font-size:28px;color:#ffcc00;line-height:1;float:left;margin-right:8px;text-shadow:0 0 10px rgba(255,204,0,0.6)}
 .quote-text{font-size:17px;font-style:italic;color:#00ffcc;margin-bottom:4px;line-height:1.35;text-shadow:0 0 8px rgba(0,255,204,0.2)}
 .quote-author{font-size:12px;color:#ff00ff;text-align:right}
@@ -277,8 +282,9 @@ html = f"""<!DOCTYPE html>
   {meeting_html}
 </div>
 
-<div class="card quote-card">
-  <span class="quote-icon">"</span>
+<div class="card quote-card{quote_cls}">
+  <span class="quote-icon">{quote_icon}</span>
+  {quote_label}
   <div class="quote-text">{q["q"]}</div>
   <div class="quote-author">- {q["a"]}</div>
 </div>
