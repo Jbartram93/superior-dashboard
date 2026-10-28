@@ -80,8 +80,8 @@ LEADERSHIP_QUOTES = [
 # Format: {"task": "...", "status": "open"/"done"}
 TOP_PRIORITIES = [
     {"task": "SCC Production Call — listen for safety mentions", "status": "open"},
-    {"task": "Walk F team oven line — watch hands, guards, gloves", "status": "open"},
-    {"task": "Find new hire training checklist", "status": "open"},
+    {"task": "Review YTD entry permits — confirm 1yr retention (looks solid)", "status": "open"},
+    {"task": "Map current training / audit process — talk to Greg", "status": "open"},
     {"task": "Send Jodi follow-up on loss runs / NAICS benchmark", "status": "open"},
     {"task": "End of day: tell Greg one observation", "status": "open"},
 ]
@@ -89,9 +89,10 @@ TOP_PRIORITIES = [
 # ACTIONS
 THIS_WEEK = [
     "Attend toolbox talks daily (7 AM)",
-    "Review 2026 incidents — top 3 patterns",
+    "Review 2026 incidents — tenure & hand-injury patterns",
     "Shadow oven operator training — bring JSAs",
-    "Meet each shift supervisor informally",
+    "Map haphazard training / audit process per role",
+    "Review confined space program (looks solid)", 
 ]
 THIS_MONTH = [
     "JSA audit & rewrite kickoff meetings",
