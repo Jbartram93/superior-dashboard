@@ -156,6 +156,7 @@ MEETINGS = [
     {"date": "2026-10-30", "time": "1:30 PM", "title": "Monthly Maintenance Meeting", "loc": "Conf Room"},
     {"date": "2026-10-30", "time": "2:30 PM", "title": "Projects Meeting", "loc": "Conf Room"},
     {"date": "2026-10-31", "time": "", "title": "🎃 Trick or Treat 🎃"},
+    {"date": "2026-11-02", "time": "10:00 AM", "title": "Teams — Logan Wright (KSS) New Hire Safety Partnership", "loc": "Teams"},
 ]
 
 # SETTINGS
