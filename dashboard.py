@@ -137,6 +137,29 @@ def action_list(items, color):
     return "\n".join(f'<div class="action-row" style="border-left:3px solid {color}"><span>{i}</span></div>' for i in items)
 
 # Meetings - manual from MEETINGS
+def _time_key(t):
+    """Convert a time string like '9:00 AM' or '3:30 PM' or '7:45 AM' or 'All Day' to a sortable number."""
+    if not t or t == "All Day":
+        return -1  # All Day / empty goes to the very top
+    t = t.strip().upper()
+    m = t.replace(" ", "")
+    try:
+        if m.endswith("PM") and not m.startswith("12"):
+            m = m[:-2]
+            hh, mm = m.split(":")
+            return int(hh) * 60 + int(mm) + 720  # PM, add 12h
+        elif m.endswith("AM"):
+            m = m[:-2]
+            hh, mm = m.split(":")
+            h = int(hh) % 12  # 12 AM -> 0
+            return h * 60 + int(mm)
+        else:
+            hh, mm = t.split(":")
+            h = int(hh) % 12
+            return h * 60 + int(mm.split()[0])
+    except Exception:
+        return 0
+
 def build_week_calendar(meetings):
     days_html = ""
     # Special day emoji map (month-day -> emoji)
@@ -150,7 +173,11 @@ def build_week_calendar(meetings):
         iso = day.isoformat()
         label = "Today" if offset == 0 else day.strftime("%a")
         date_num = day.day
-        day_events = sorted([m for m in meetings if m["date"] == iso], key=lambda m: (0 if m["time"] == "All Day" or not m["time"] else 1, m["time"] if m["time"] not in ("All Day", "") else ""), reverse=True)
+        # Sort: All Day first, then chronological by actual time (early morning first)
+        day_events = sorted(
+            [m for m in meetings if m["date"] == iso],
+            key=lambda m: _time_key(m.get("time", ""))
+        )
         events_html = ""
         for m in day_events:
             loc = f' <span class="wloc">({m["loc"]})</span>' if m.get("loc") else ""
