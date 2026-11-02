@@ -159,6 +159,11 @@ MEETINGS = [
     {"date": "2026-11-02", "time": "10:00 AM", "title": "Teams — Logan Wright (KSS) New Hire Safety Partnership", "loc": "Teams"},
     {"date": "2026-11-02", "time": "7:45 AM", "title": "New Hire Orientation — Conference Room", "loc": "Conf Room"},
     {"date": "2026-11-02", "time": "3:30 PM", "title": "Teams — Express Temp Agency Meeting", "loc": "Teams"},
+    {"date": "2026-11-03", "time": "7:30 AM", "title": "Supervisors Meeting (Teams)", "loc": "Teams"},
+    {"date": "2026-11-03", "time": "2:30 PM", "title": "Succession Planning", "loc": "Conf Room"},
+    {"date": "2026-11-04", "time": "9:00 AM", "title": "SCC Production Call (Teams)", "loc": "Teams"},
+    {"date": "2026-11-05", "time": "10:30 AM", "title": "Safety Walkthrough", "loc": ""},
+    {"date": "2026-11-05", "time": "2:00 PM", "title": "Weekly Planning Meeting", "loc": "Conf Room"},
 ]
 
 # SETTINGS
