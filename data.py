@@ -79,34 +79,40 @@ LEADERSHIP_QUOTES = [
 # TOP PRIORITIES — Text me to add/edit. These show on the dashboard.
 # Format: {"task": "...", "status": "open"/"done"}
 TOP_PRIORITIES = [
-    {"task": "SCC Production Call — listen for safety mentions", "status": "open"},
-    {"task": "Review YTD entry permits — confirm 1yr retention (looks solid)", "status": "open"},
-    {"task": "Map current training / audit process — talk to Greg", "status": "open"},
-    {"task": "Send Jodi follow-up on loss runs / NAICS benchmark", "status": "open"},
-    {"task": "End of day: tell Greg one observation", "status": "open"},
+    {"task": "Shrink wrap machine safety zone — rails/tape/barrier (before John returns)", "status": "open"},
+    {"task": "Furnace walkway fall protection — dig in personally", "status": "open"},
+    {"task": "Chain railings & swing gates — follow up with Bryan", "status": "open"},
+    {"task": "Dry ice blasting — schedule vendor site visit", "status": "open"},
+    {"task": "Survey to Greg — get green light on anonymous employee survey", "status": "open"},
+    {"task": "Insurance claim — redo/open enrollment (reminder daily)", "status": "open"},
+    {"task": "Safety Walkthrough — get organized with Greg (Thurs 10:30am)", "status": "open"},
 ]
 
 # ACTIONS
 THIS_WEEK = [
-    "Attend toolbox talks daily (7 AM)",
-    "Review 2026 incidents — tenure & hand-injury patterns",
-    "Shadow oven operator training — bring JSAs",
-    "Map haphazard training / audit process per role",
-    "Review confined space program (looks solid)", 
+    "Temp agency calls — KSS (today 10am) + Express (today 3:30pm)",
+    "Shrink wrap barrier — walk floor w/ Greg, place rails (before John returns)",
+    "Furnace railings/swing gates — follow up with Bryan",
+    "Furnace walkway fall protection — inspect personally",
+    "Dry ice blasting — schedule vendor visit, fill cost analysis",
+    "Send Greg the anonymous survey proposal email",
+    "Safety Walkthrough — prep + Greg (Thurs 10:30am)",
+    "New hire orientation — observe vs. checklist (today 7:45am)",
 ]
 THIS_MONTH = [
-    "JSA audit & rewrite kickoff meetings",
-    "Build training matrix / identify gaps",
-    "Take over incident reporting & investigation",
-    "Present Month 1 observations to leadership",
-    "Establish weekly safety walk cadence",
+    "Corrective action tracker — fill all open items from incidents",
+    "Shrink wrap barricade deployment (rails/tape stands)",
+    "Vest-until-verified program pilot with Matt",
+    "New hire training matrix per role",
+    "KSS/Express partnership — follow-up one-pagers + check-ins",
 ]
 THIS_QUARTER = [
-    "Confined space trainer certification",
-    "LOTO program review & improvement",
-    "HazCom program — binder room first",
-    "Expand glove program across jobs",
-    "Build automated EHS dashboard",
+    "Belt cleaning — dry ice blasting trial + cost analysis to Greg",
+    "Training matrix rollout (per role, competency-gated)",
+    "Huntingdon PA transition — first visit (observe only)",
+    "HazCom program — if binder room-first",
+    "Confined space — elevate program (cleaner permits, more training, rescue practice)",
+    "OSHA missed 3x — show proactive surveillance value",
 ]
 
 # GREG'S 60-DAY ROADMAP — from plant manager's handwritten plan
@@ -140,10 +146,11 @@ ROADMAP = [
     ]},
 ]
 CORRECTIVE_ACTIONS = [
-    {"title":"Complete 2026 incident review & RCA","status":"in-progress","days":2,"owner":"Justin"},
-    {"title":"Rebuild Oven Operator JSA — ownership & review structure","status":"open","days":1,"owner":"Justin"},
-    {"title":"Build training matrix per role","status":"open","days":1,"owner":"Justin"},
-    {"title":"Review LOTO procedures for oven area","status":"open","days":0,"owner":"Justin"},
+    {"title":"Shrink wrap safety zone — repaint lines, dial speed, U-Line guard rails", "status":"open", "days":1, "owner":"Justin/Bryan"},
+    {"title":"Complete 2026 incident review & RCA", "status":"in-progress", "days":2, "owner":"Justin"},
+    {"title":"Rebuild Oven Operator JSA — ownership & review structure", "status":"open", "days":1, "owner":"Justin"},
+    {"title":"Build training matrix per role", "status":"open", "days":1, "owner":"Justin"},
+    {"title":"Review LOTO procedures for oven area", "status":"open", "days":0, "owner":"Justin"},
 ]
 
 # MEETINGS — Auto-populated (recurring) + manual. Text me to add/edit.
