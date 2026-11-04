@@ -41,6 +41,15 @@ INDUSTRY_BENCHMARK = 3.3  # NAICS 32619900 — Other Plastics Product Manufactur
 # conservative estimate based on known rates for related plastics NAICS codes
 # (326111=2.9, 326121=3.1, all mfg=2.7). Verify exact figure from loss runs.
 
+# WEEKLY FOCUS — the few bankable moves for THIS WEEK (keep to 3-4).
+# This is the ADHD "do this now" anchor. Finish BEFORE starting new things.
+WEEKLY_FOCUS = [
+    "Find air sampling for furnace builder (RCF + resp silica)",
+    "Check Tanaha for air monitor + hose for Bryan",
+    "Review + log the incident report",
+    "Shrink wrap barrier — walk floor w/ Greg, deploy rails/tape",
+]
+
 # DAILY QUOTES — one per day, rotates
 LEADERSHIP_QUOTES = [
     {"q":"The first responsibility of a leader is to define reality. The last is to say thank you.","a":"Max DePree"},
