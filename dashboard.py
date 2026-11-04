@@ -203,6 +203,14 @@ for p in TOP_PRIORITIES:
 if not prio_html:
     prio_html = '<div class="empty">No priorities set. Text me!</div>'
 
+# WEEKLY FOCUS — the bankable "do this now" anchor
+focus_html = "".join(
+    f'<div class="focus-row"><span class="focus-num">{i+1}</span><span class="focus-text">{item}</span></div>'
+    for i, item in enumerate(WEEKLY_FOCUS)
+)
+if not focus_html:
+    focus_html = '<div class="empty">No weekly focus set.</div>'
+
 meeting_html = build_week_calendar(MEETINGS)
 
 # Corrective actions
@@ -223,8 +231,8 @@ date_line = NOW.strftime("%A").upper() + " " + NOW.strftime("%B").upper() + " " 
 
 CSS = """*{box-sizing:border-box;margin:0;padding:0}
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-body{background:#0a0a1a;color:#00ffcc;font-family:'Orbitron',monospace,sans-serif;font-size:15px;padding:20px 24px;position:relative;overflow-x:hidden;text-shadow:0 0 5px rgba(0,255,204,0.3)}
-body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,204,0.03) 2px,rgba(0,255,204,0.03) 4px);pointer-events:none;z-index:9999}
+body{background:#0d1026;color:#c9f5ee;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:15px;padding:20px 24px;position:relative;overflow-x:hidden}
+body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,255,204,0.015) 3px,rgba(0,255,204,0.015) 4px);pointer-events:none;z-index:9999}
 .card{background:rgba(10,5,30,0.88);border:1px solid #ff00ff;border-radius:8px;padding:14px 18px;margin-bottom:14px;position:relative;z-index:1;box-shadow:0 0 12px rgba(255,0,255,0.2),inset 0 0 20px rgba(0,255,204,0.05)}
 .card:hover{box-shadow:0 0 25px rgba(255,0,255,0.4),0 0 15px rgba(0,255,204,0.2),inset 0 0 30px rgba(0,255,204,0.1);border-color:#00ffcc}
 h2{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#ff00ff;margin-bottom:10px;font-weight:700;text-shadow:0 0 10px rgba(255,0,255,0.5)}
@@ -269,8 +277,14 @@ h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shad
 .prio-row{padding:4px 8px;margin:2px 0;font-size:12px;background:rgba(0,0,0,0.4);border-radius:4px;border-left:3px solid #ff00ff}
 .prio-row.prio-done{opacity:0.4;border-left-color:#0066ff}
 .prio-icon{margin-right:6px;font-size:13px}
-.ca-row{padding:3px 0;font-size:12px;border-bottom:1px solid rgba(255,0,255,0.1)}
-.ca-row b{color:#00ffcc}
+.ca-row{color:#334155}.ca-row b{color:#00ffcc}
+.focus-card{border-left:5px solid #00ffcc;background:linear-gradient(135deg,rgba(0,255,204,0.10),rgba(10,5,30,0.88) 55%);box-shadow:0 0 20px rgba(0,255,204,0.15)}
+.h2-focus{color:#00ffcc !important;text-shadow:0 0 12px rgba(0,255,204,0.6) !important}
+.focus-row{display:flex;align-items:center;padding:7px 4px;border-bottom:1px solid rgba(0,255,204,0.15);font-size:14px;line-height:1.35}
+.focus-row:last-child{border-bottom:none}
+.focus-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(0,255,204,0.25);color:#00ffcc;font-weight:900;display:flex;align-items:center;justify-content:center;margin-right:10px;font-size:12px;text-shadow:0 0 6px rgba(0,255,204,0.6)}
+.focus-text{color:#f8fafc}
+.focus-rule{margin-top:8px;font-size:11px;color:#ffcc00;letter-spacing:1px;text-transform:uppercase;text-align:right;font-weight:700}
 .roadmap-grid{display:flex;gap:8px;flex-wrap:wrap}
 .rm-phase{background:rgba(0,0,0,0.4);border-radius:6px;padding:8px 10px;flex:1;min-width:130px;border:1px solid rgba(255,0,255,0.1)}
 .rm-period{font-size:10px;font-weight:700;color:#ff00ff;text-transform:uppercase;letter-spacing:2px;margin-bottom:5px;border-bottom:1px solid rgba(255,0,255,0.2);padding-bottom:3px;text-shadow:0 0 5px rgba(255,0,255,0.4)}
@@ -297,6 +311,12 @@ html = f"""<!DOCTYPE html>
     <img src="https://shcomposites.com/wp-content/uploads/superior-huntingdon-composites-265.jpg" class="header-logo" alt="SC">
     <div class="date-line">{LOCATION}</div>
   </div>
+</div>
+
+<div class="card focus-card">
+  <h2 class="h2-focus">THIS WEEK — DO THESE</h2>
+  {focus_html}
+  <div class="focus-rule">Finish these before starting new things.</div>
 </div>
 
 <div class="card">
