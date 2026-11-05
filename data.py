@@ -181,7 +181,9 @@ MEETINGS = [
     {"date": "2026-11-03", "time": "All Day", "title": "Send Chad Doordash 🎁"},
     {"date": "2026-11-05", "time": "10:30 AM", "title": "Safety Walkthrough", "loc": ""},
     {"date": "2026-11-05", "time": "2:00 PM", "title": "Weekly Planning Meeting", "loc": "Conf Room"},
-        {"date": "2026-11-06", "time": "1:00 PM", "title": "Teams — IES Industrial Hygiene Air Sampling", "loc": "Teams"},
+        {"date": "2026-11-06", "time": "10:00 AM", "title": "Weekly Planning Meeting", "loc": "Conf Room"},
+    {"date": "2026-11-06", "time": "10:30 AM", "title": "Safety Walkthrough", "loc": ""},
+    {"date": "2026-11-06", "time": "1:00 PM", "title": "Teams — IES Industrial Hygiene Air Sampling", "loc": "Teams"},
     ]
 
 # SETTINGS
