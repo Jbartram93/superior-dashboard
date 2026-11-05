@@ -88,25 +88,24 @@ LEADERSHIP_QUOTES = [
 # TOP PRIORITIES — Text me to add/edit. These show on the dashboard.
 # Format: {"task": "...", "status": "open"/"done"}
 TOP_PRIORITIES = [
-    {"task": "Shrink wrap machine safety zone — rails/tape/barrier (before John returns)", "status": "open"},
-    {"task": "Furnace walkway fall protection — dig in personally", "status": "open"},
-    {"task": "Chain railings & swing gates — follow up with Bryan", "status": "open"},
-    {"task": "Dry ice blasting — schedule vendor site visit", "status": "open"},
-    {"task": "Survey to Greg — get green light on anonymous employee survey", "status": "open"},
-    {"task": "Insurance claim — redo/open enrollment (reminder daily)", "status": "open"},
-    {"task": "Safety Walkthrough — get organized with Greg (Thurs 10:30am)", "status": "open"},
+    {"task": "Get vest pricing for Greg (hi-vis, Class 2, quantity estimate)", "status": "open"},
+    {"task": "Resubmit insurance claim — documents at home, do tomorrow", "status": "open"},
+    {"task": "IES air sampling meeting — Fri Nov 6, 1pm Teams", "status": "open"},
+    {"task": "Tell KSS about day-one vest program (Logan emailed today)", "status": "open"},
+    {"task": "Revise incident form — finalize EHS-IR-001 for rollout", "status": "open"},
+    {"task": "Safety Walkthrough with Greg (Thurs 10:30) — Tanaha partnership", "status": "open"},
 ]
 
 # ACTIONS
 THIS_WEEK = [
-    "Temp agency calls — KSS (today 10am) + Express (today 3:30pm)",
-    "Shrink wrap barrier — walk floor w/ Greg, place rails (before John returns)",
-    "Furnace railings/swing gates — follow up with Bryan",
-    "Furnace walkway fall protection — inspect personally",
-    "Dry ice blasting — schedule vendor visit, fill cost analysis",
-    "Send Greg the anonymous survey proposal email",
-    "Safety Walkthrough — prep + Greg (Thurs 10:30am)",
-    "New hire orientation — observe vs. checklist (today 7:45am)",
+    "Shrink wrap barrier ordered — awaiting delivery + install ✅",
+    "Get vest pricing for Greg",
+    "Resubmit insurance claim",
+    "IES air sampling meeting Friday 1pm",
+    "Safety Walkthrough Thursday 10:30 — Tanaha partnership",
+    "Send Tanaha email about safety walks — done ✅",
+    "Logan (KSS) emailed about vest program — follow up",
+    "Incident form finalization + rollout plan",
 ]
 THIS_MONTH = [
     "Corrective action tracker — fill all open items from incidents",
