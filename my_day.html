@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="1800">
+<meta name="viewport" content="width=1280">
+<title>My Day — Personal Tracker</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f172a;color:#e2e8f0;font-family:Segoe UI,Arial,sans-serif;font-size:13px;padding:10px 14px}
+.hdr{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #3b82f6;padding-bottom:6px;margin-bottom:8px}
+.clock{font-size:32px;font-weight:bold;color:#f8fafc}
+.dt{font-size:11px;color:#94a3b8}
+.right{text-align:right;font-size:10px;color:#3b82f6}
+table{width:100%;border-collapse:collapse}
+td{padding:3px 5px;vertical-align:top}
+.card{border:1px solid #334155;border-radius:6px;padding:7px;background:#1e293b;margin-bottom:4px}
+h2{font-size:10px;color:#60a5fa;font-weight:bold;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #334155;padding-bottom:3px;margin-bottom:4px}
+.it{padding:3px 0;font-size:11px;border-bottom:1px solid #16233b;line-height:1.3}
+.pri{display:inline-block;width:5px;height:5px;border-radius:50%;margin-right:4px}
+.p1{background:#ef4444}.p2{background:#f59e0b}.p3{background:#3b82f6}
+.ft{font-size:9px;color:#475569;text-align:center;margin-top:6px;padding-top:4px;border-top:1px solid #334155}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div><div class="clock" id="clock">--</div><div class="dt" id="date">--</div></div>
+  <div class="right">Superior EHS<br>Justin's Personal Board</div>
+</div>
+
+<table><tr>
+<td style="width:25%"><div class="card"><h2>TODAY</h2>
+  <div class="it pri p1"></div>EHS Leadership Meeting 2:30pm</div>
+  <div class="it pri p2"></div>Review Bonnie Swim actions</div>
+  <div class="it pri p2"></div>Talk to Doug about Teams</div>
+  <div class="it pri p3"></div>Get vest pricing for Greg</div>
+</div></td>
+<td style="width:25%"><div class="card"><h2>THIS WEEK</h2>
+  <div class="it pri p1"></div>Leadership meeting - Nov 10</div>
+  <div class="it pri p2"></div>Rotation log rollout</div>
+  <div class="it pri p2"></div>Talk to Doug - Teams hosting</div>
+  <div class="it pri p3"></div>CA supervisor standards</div>
+</div></td>
+<td style="width:25%"><div class="card"><h2>SCHEDULE</h2>
+  <div class="it pri p1"></div>Tue 2:30pm - EHS Meeting</div>
+  <div class="it pri p2"></div>Wed 9am - Prod Call</div>
+  <div class="it pri p2"></div>Thu 10:30am - Safety Walk</div>
+  <div class="it pri p2"></div>Fri 1pm - Weekly Planning</div>
+</div></td>
+<td style="width:25%"><div class="card"><h2>PROJECTS</h2>
+  <div class="it pri p2"></div>Shrink wrap barrier</div>
+  <div class="it pri p2"></div>Vest-until-verified</div>
+  <div class="it pri p2"></div>Rotation log rollout</div>
+  <div class="it pri p3"></div>Huntingdon visit (Dec)</div>
+</div></td>
+</tr></table>
+
+<div class="card" style="margin-top:2px"><h2>MY 3 FOCUSES THIS WEEK</h2>
+<div class="it pri p1"></div>1. Lead the EHS leadership meeting with confidence</div>
+<div class="it pri p2"></div>2. Move the tracker into Teams</div>
+<div class="it pri p3"></div>3. Roll out rotation log + vests program</div></div>
+
+<div class="ft">Justin Bartram - EHS Leader | Updated Nov 09, 2026 | Refreshes every 30 min</div>
+
+<script>
+var d=new Date();
+var dd=d.getDate(),mmm=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()];
+var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d.getDay()];
+var h=d.getHours(),m=d.getMinutes(),a=h>=12?'PM':'AM';h=h%12||12;
+document.getElementById('clock').innerHTML=h+':'+(m<10?'0':'')+m+' '+a;
+document.getElementById('date').innerHTML=days+', '+mmm+' '+dd;
+</script>
+</body>
+</html>
