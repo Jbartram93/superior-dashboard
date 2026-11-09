@@ -1,159 +1,104 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+<head>
 <meta charset="utf-8">
 <meta http-equiv="refresh" content="1800">
-<title>Superior Dashboard</title>
-<style>*{box-sizing:border-box;margin:0;padding:0}
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-body{background:#0d1026;color:#c9f5ee;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:15px;padding:20px 24px;position:relative;overflow-x:hidden}
-body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,255,204,0.015) 3px,rgba(0,255,204,0.015) 4px);pointer-events:none;z-index:9999}
-.card{background:rgba(10,5,30,0.88);border:1px solid #ff00ff;border-radius:8px;padding:14px 18px;margin-bottom:14px;position:relative;z-index:1;box-shadow:0 0 12px rgba(255,0,255,0.2),inset 0 0 20px rgba(0,255,204,0.05)}
-.card:hover{box-shadow:0 0 25px rgba(255,0,255,0.4),0 0 15px rgba(0,255,204,0.2),inset 0 0 30px rgba(0,255,204,0.1);border-color:#00ffcc}
-h2{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#ff00ff;margin-bottom:10px;font-weight:700;text-shadow:0 0 10px rgba(255,0,255,0.5)}
-h3{font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:2px;text-shadow:0 0 8px currentColor}
-.empty{color:#6633cc;font-size:13px;margin:4px 0}
-.muted{color:#6633cc;font-size:11px}
-.header{display:flex;align-items:flex-start;margin-bottom:16px;border-bottom:2px solid #ff00ff;padding-bottom:12px;box-shadow:0 4px 12px rgba(255,0,255,0.15);background:linear-gradient(90deg,transparent,rgba(255,0,255,0.05),transparent)}
-.header>div:nth-child(1){width:40%}
-.header>div:nth-child(2){width:35%}
-.header>div:nth-child(3){width:25%;text-align:right}
-.clock{font-size:52px;font-weight:900;letter-spacing:-1.5px;color:#00ffcc;text-shadow:0 0 15px rgba(0,255,204,0.6),0 0 30px rgba(0,255,204,0.3),0 0 45px rgba(0,255,204,0.1)}
-.clock small{font-size:24px;font-weight:700;margin-left:4px;color:#ff00ff;text-shadow:0 0 10px rgba(255,0,255,0.5),0 0 20px rgba(255,0,255,0.2)}
-.date-line{font-size:14px;font-weight:700;letter-spacing:2px;color:#ffcc00;text-shadow:0 0 8px rgba(255,204,0,0.4)}
-.wx-simple{font-size:13px;color:#00ffcc}
-.wx-temp{font-size:28px;font-weight:700;color:#ffcc00;margin-right:8px;text-shadow:0 0 10px rgba(255,204,0,0.4)}
-.wx-hilo{color:#00ffcc;margin-right:12px}
-.wx-rain{color:#0066ff;text-shadow:0 0 8px rgba(0,102,255,0.4)}
-.header-logo{height:36px;opacity:0.6;margin-bottom:4px;filter:drop-shadow(0 0 8px #ff00ff) drop-shadow(0 0 3px #00ffcc)}
-.quote-card{border-left:4px solid #ffcc00;background:linear-gradient(135deg,rgba(10,5,30,0.88) 60%,rgba(255,204,0,0.05))}
-.quote-card-pause{border-left:4px solid #00ffcc;background:linear-gradient(135deg,rgba(10,5,30,0.88) 55%,rgba(0,255,204,0.08));box-shadow:0 0 18px rgba(0,255,204,0.15)}
-.quote-icon{font-size:28px;color:#ffcc00;line-height:1;float:left;margin-right:8px;text-shadow:0 0 10px rgba(255,204,0,0.6)}
-.quote-text{font-size:17px;font-style:italic;color:#00ffcc;margin-bottom:4px;line-height:1.35;text-shadow:0 0 8px rgba(0,255,204,0.2)}
-.quote-author{font-size:12px;color:#ff00ff;text-align:right}
-.chart-card svg{width:100%;height:auto}
-.action-grid{display:flex;gap:12px}
-.action-col{flex:1;min-width:0}
-.action-row{padding:5px 8px;margin:3px 0;font-size:12px;line-height:1.3;border-radius:4px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,0,255,0.15)}
-.action-row:hover{border-color:#ffcc00;box-shadow:0 0 10px rgba(255,204,0,0.2)}
-.week-grid{display:flex;gap:5px}
-.wday{flex:1;min-width:0;background:rgba(0,0,0,0.4);border-radius:6px;padding:6px 4px;border:1px solid rgba(255,0,255,0.1)}
-.wday-today{background:rgba(255,0,255,0.08);border:1px solid #ff00ff;box-shadow:0 0 12px rgba(255,0,255,0.2),inset 0 0 20px rgba(0,255,204,0.05)}
-.wday-head{font-size:10px;font-weight:700;color:#0066ff;text-transform:uppercase;text-align:center;margin-bottom:5px;text-shadow:0 0 5px rgba(0,102,255,0.3)}
-.day-icon{display:block;font-size:22px;line-height:1;margin-bottom:2px}
-.wdate{display:block;font-size:18px;font-weight:900;color:#ffcc00;margin-top:2px;text-shadow:0 0 8px rgba(255,204,0,0.3)}
-.wday-today .wday-head{color:#ff00ff}
-.wevent{font-size:11px;line-height:1.3;padding:3px 2px;border-bottom:1px solid rgba(255,0,255,0.1);margin-bottom:2px}
-.wevent:last-child{border-bottom:none}
-.wtime{font-weight:700;color:#00ffff;display:block;font-size:8px;text-shadow:0 0 5px rgba(0,255,255,0.4)}
-.wtime-all{font-weight:700;color:#ff00ff;display:block;font-size:7px;text-transform:uppercase;letter-spacing:1px}
-.wevent.all-day{background:rgba(255,0,255,0.1);border-left:2px solid #ff00ff;padding:3px;margin-bottom:2px;border-radius:2px;font-size:9px}
-.wloc{color:#6633cc;font-size:8px}
-.prio-row{padding:4px 8px;margin:2px 0;font-size:12px;background:rgba(0,0,0,0.4);border-radius:4px;border-left:3px solid #ff00ff}
-.prio-row.prio-done{opacity:0.4;border-left-color:#0066ff}
-.prio-icon{margin-right:6px;font-size:13px}
-.ca-row{color:#334155}.ca-row b{color:#00ffcc}
-.focus-card{border-left:5px solid #00ffcc;background:linear-gradient(135deg,rgba(0,255,204,0.10),rgba(10,5,30,0.88) 55%);box-shadow:0 0 20px rgba(0,255,204,0.15)}
-.h2-focus{color:#00ffcc !important;text-shadow:0 0 12px rgba(0,255,204,0.6) !important}
-.focus-row{display:flex;align-items:center;padding:7px 4px;border-bottom:1px solid rgba(0,255,204,0.15);font-size:14px;line-height:1.35}
-.focus-row:last-child{border-bottom:none}
-.focus-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(0,255,204,0.25);color:#00ffcc;font-weight:900;display:flex;align-items:center;justify-content:center;margin-right:10px;font-size:12px;text-shadow:0 0 6px rgba(0,255,204,0.6)}
-.focus-text{color:#f8fafc}
-.focus-rule{margin-top:8px;font-size:11px;color:#ffcc00;letter-spacing:1px;text-transform:uppercase;text-align:right;font-weight:700}
-.roadmap-grid{display:flex;gap:8px;flex-wrap:wrap}
-.rm-phase{background:rgba(0,0,0,0.4);border-radius:6px;padding:8px 10px;flex:1;min-width:130px;border:1px solid rgba(255,0,255,0.1)}
-.rm-period{font-size:10px;font-weight:700;color:#ff00ff;text-transform:uppercase;letter-spacing:2px;margin-bottom:5px;border-bottom:1px solid rgba(255,0,255,0.2);padding-bottom:3px;text-shadow:0 0 5px rgba(255,0,255,0.4)}
-.rm-items{list-style:none;padding:0;margin:0}
-.rm-items li{font-size:11px;padding:2px 0;color:#00ffcc;line-height:1.3}
-.rm-items li:before{content:"B8";color:#ffcc00;margin-right:4px;text-shadow:0 0 5px rgba(255,204,0,0.4)}
-.footer{color:#6633cc;font-size:11px;margin-top:12px;text-align:center}
+<meta name="viewport" content="width=1280">
+<title>Superior EHS Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f172a;color:#e2e8f0;font-family:Arial,sans-serif;font-size:14px;padding:16px 20px}
+.header{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #3b82f6;padding-bottom:8px;margin-bottom:10px}
+.clock{font-size:38px;font-weight:700;color:#f8fafc}
+.date{font-size:13px;color:#94a3b8}
+.wx{font-size:12px;color:#3b82f6;text-align:right}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+.card{background:rgba(30,41,59,0.6);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:10px 12px}
+.stat-val{font-size:22px;font-weight:700;color:#f8fafc}
+.stat-lbl{font-size:10px;color:#64748b;text-transform:uppercase}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+h2{font-size:11px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;border-bottom:1px solid rgba(59,130,246,0.15);padding-bottom:4px}
+.item{padding:4px 0;font-size:12px;border-bottom:1px solid rgba(59,130,246,0.08);line-height:1.3}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.dot-red{background:#ef4444}
+.dot-amber{background:#f59e0b}
+.dot-green{background:#22c55e}
+.footer{font-size:10px;color:#475569;text-align:center;margin-top:10px;border-top:1px solid rgba(59,130,246,0.1);padding-top:8px}
 </style>
-</head><body>
+</head>
+<body>
+
 <div class="header">
   <div>
-    <div class="clock"><span id="c">10:00<small>AM</small></span></div>
-    <div class="date-line">FRIDAY NOVEMBER 6</div>
+    <div class="clock" id="clock">--</div>
+    <div class="date" id="date">Monday, November 09, 2026</div>
   </div>
-  <div class="weather"><div class="wx-simple"><span class="wx-temp">58°</span> <span class="wx-hilo">62° / 49°</span> <span class="wx-rain">4% rain</span></div></div>
-  <div style="text-align:right">
-    <img src="https://shcomposites.com/wp-content/uploads/superior-huntingdon-composites-265.jpg" class="header-logo" alt="SC">
-    <div class="date-line">Vanceburg, KY</div>
-  </div>
-</div>
-
-<div class="card focus-card">
-  <h2 class="h2-focus">THIS WEEK — DO THESE</h2>
-  <div class="focus-row"><span class="focus-num">1</span><span class="focus-text">Find air sampling for furnace builder (RCF + resp silica)</span></div><div class="focus-row"><span class="focus-num">2</span><span class="focus-text">Check Tanaha for air monitor + hose for Bryan</span></div><div class="focus-row"><span class="focus-num">3</span><span class="focus-text">Review + log the incident report</span></div><div class="focus-row"><span class="focus-num">4</span><span class="focus-text">Shrink wrap barrier — walk floor w/ Greg, deploy rails/tape</span></div>
-  <div class="focus-rule">Finish these before starting new things.</div>
-</div>
-
-<div class="card">
-  <h2>TOP PRIORITIES</h2>
-  <div class="prio-row"><span class="prio-icon">□</span> Get vest pricing for Greg (hi-vis, Class 2, quantity estimate)</div><div class="prio-row"><span class="prio-icon">□</span> Resubmit insurance claim — documents at home, do tomorrow</div><div class="prio-row"><span class="prio-icon">□</span> IES air sampling meeting — Fri Nov 6, 1pm Teams</div><div class="prio-row"><span class="prio-icon">□</span> Tell KSS about day-one vest program (Logan emailed today)</div><div class="prio-row"><span class="prio-icon">□</span> Revise incident form — finalize EHS-IR-001 for rollout</div><div class="prio-row"><span class="prio-icon">□</span> Safety Walkthrough with Greg (Thurs 10:30) — Tanaha partnership</div>
-</div>
-
-<div class="card">
-  <h2>WEEKLY CALENDAR</h2>
-  <div class="week-grid"><div class="wday wday-today"><div class="wday-head">Today<span class="wdate">6</span></div><div class="wevent"><span class="wtime">10:30 AM</span> Safety Walkthrough</div><div class="wevent"><span class="wtime">1:00 PM</span> Teams — IES Industrial Hygiene Air Sampling <span class="wloc">(Teams)</span></div><div class="wevent"><span class="wtime">3:00 PM</span> Weekly Planning Meeting <span class="wloc">(Conf Room)</span></div></div><div class="wday"><div class="wday-head">Sat<span class="wdate">7</span></div><div class="wevent empty">--</div></div><div class="wday"><div class="wday-head">Sun<span class="wdate">8</span></div><div class="wevent empty">--</div></div><div class="wday"><div class="wday-head">Mon<span class="wdate">9</span></div><div class="wevent empty">--</div></div><div class="wday"><div class="wday-head">Tue<span class="wdate">10</span></div><div class="wevent empty">--</div></div><div class="wday"><div class="wday-head">Wed<span class="wdate">11</span></div><div class="wevent empty">--</div></div><div class="wday"><div class="wday-head">Thu<span class="wdate">12</span></div><div class="wevent empty">--</div></div></div>
-</div>
-
-<div class="card quote-card quote-card-pause">
-  <span class="quote-icon">💭</span>
-  <div class="muted" style="font-size:11px;margin-bottom:4px;letter-spacing:1px;text-transform:uppercase;color:#ffcc00">Pause &amp; Think</div>
-  <div class="quote-text">No task is so urgent it can't be done safely.</div>
-  <div class="quote-author">- Pause & Think</div>
-</div>
-
-<div class="card">
-  <h2>60-DAY ROADMAP</h2>
-  <div class="roadmap-grid">
-<div class="rm-phase"><div class="rm-period">Week 1-2</div><ul class="rm-items"><li>Orientation & floor time</li><li>Watch trainers with JSAs</li><li>Take over incident reporting</li><li>Lead safety walks</li><li>Review 2026 incidents</li><li>Toolbox talks — daily</li></ul></div><div class="rm-phase"><div class="rm-period">Week 2-4</div><ul class="rm-items"><li>Learn to teach orientation</li><li>Engage employees on floor</li><li>Deep dive training gaps</li></ul></div><div class="rm-phase"><div class="rm-period">Month 2</div><ul class="rm-items"><li>JSA audit team meetings</li><li>Present observations & recommendations</li><li>Build incident pattern analysis</li><li>Pause & Think culture — toolbox talks as questions</li></ul></div><div class="rm-phase"><div class="rm-period">Longer-term</div><ul class="rm-items"><li>Confined Space trainer cert</li><li>LOTO trainer cert</li><li>Emergency Response trainer cert</li><li>CPR / First Aid trainer cert</li><li>OSHA-10 trainer cert</li><li>Start HazCom program</li></ul></div>
+  <div>
+    <div class="wx">Vanceburg, KY</div>
+    <div class="wx" style="font-size:10px">Superior Huntingdon Composites | EHS Dashboard</div>
   </div>
 </div>
 
-<div class="card">
-  <h2>ACTION BOARD</h2>
-  <div class="action-grid">
-    <div class="action-col"><h3 style="color:#f59e0b">THIS WEEK</h3><div class="action-row" style="border-left:3px solid #f59e0b"><span>Shrink wrap barrier ordered — awaiting delivery + install ✅</span></div>
-<div class="action-row" style="border-left:3px solid #f59e0b"><span>Get vest pricing for Greg</span></div>
-<div class="action-row" style="border-left:3px solid #f59e0b"><span>Resubmit insurance claim</span></div>
-<div class="action-row" style="border-left:3px solid #f59e0b"><span>IES air sampling meeting Friday 1pm</span></div>
-<div class="action-row" style="border-left:3px solid #f59e0b"><span>Safety Walkthrough Thursday 10:30 — Tanaha partnership</span></div>
-<div class="action-row" style="border-left:3px solid #f59e0b"><span>Send Tanaha email about safety walks — done ✅</span></div>
-<div class="action-row" style="border-left:3px solid #f59e0b"><span>Logan (KSS) emailed about vest program — follow up</span></div>
-<div class="action-row" style="border-left:3px solid #f59e0b"><span>Incident form finalization + rollout plan</span></div></div>
-    <div class="action-col"><h3 style="color:#3b82f6">THIS MONTH</h3><div class="action-row" style="border-left:3px solid #3b82f6"><span>Corrective action tracker — fill all open items from incidents</span></div>
-<div class="action-row" style="border-left:3px solid #3b82f6"><span>Shrink wrap barricade deployment (rails/tape stands)</span></div>
-<div class="action-row" style="border-left:3px solid #3b82f6"><span>Vest-until-verified program pilot with Matt</span></div>
-<div class="action-row" style="border-left:3px solid #3b82f6"><span>New hire training matrix per role</span></div>
-<div class="action-row" style="border-left:3px solid #3b82f6"><span>KSS/Express partnership — follow-up one-pagers + check-ins</span></div></div>
-    <div class="action-col"><h3 style="color:#8b5cf6">THIS QUARTER</h3><div class="action-row" style="border-left:3px solid #8b5cf6"><span>Belt cleaning — dry ice blasting trial + cost analysis to Greg</span></div>
-<div class="action-row" style="border-left:3px solid #8b5cf6"><span>Training matrix rollout (per role, competency-gated)</span></div>
-<div class="action-row" style="border-left:3px solid #8b5cf6"><span>Huntingdon PA transition — first visit (observe only)</span></div>
-<div class="action-row" style="border-left:3px solid #8b5cf6"><span>HazCom program — if binder room-first</span></div>
-<div class="action-row" style="border-left:3px solid #8b5cf6"><span>Confined space — elevate program (cleaner permits, more training, rescue practice)</span></div>
-<div class="action-row" style="border-left:3px solid #8b5cf6"><span>OSHA missed 3x — show proactive surveillance value</span></div></div>
+<div class="grid-4">
+  <div class="card"><div class="stat-lbl">Open Corrective Actions</div><div class="stat-val">10</div></div>
+  <div class="card"><div class="stat-lbl">Active Projects</div><div class="stat-val">14</div></div>
+  <div class="card"><div class="stat-lbl">2026 Incidents</div><div class="stat-val">25</div></div>
+  <div class="card"><div class="stat-lbl">Days Since LTI</div><div class="stat-val">12</div></div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>OPEN CORRECTIVE ACTIONS</h2>
+    <div class="item"><span class="dot dot-amber"></span>Paint walkway markings - QC shack pallet zone (Justin)</div>
+    <div class="item"><span class="dot dot-amber"></span>Fire extinguisher clearance zone (Bryan)</div>
+    <div class="item"><span class="dot dot-amber"></span>Expander rotation log rollout (supervisors)</div>
+    <div class="item"><span class="dot dot-amber"></span>Vest pricing for Greg</div>
+    <div class="item"><span class="dot dot-amber"></span>IES air sampling results review (RCF furnace)</div>
+    <div class="item"><span class="dot dot-amber"></span>Furnace walkway fall protection audit</div>
+    <div class="item"><span class="dot dot-amber"></span>Gas heater options (Soham wash pit)</div>
+    <div class="item"><span class="dot dot-amber"></span>Shrink wrap barrier - awaiting delivery</div>
+    <div class="item"><span class="dot dot-amber"></span>Line 1 meeting - Sean/Tom/Roger/Jodi</div>
+    <div class="item"><span class="dot dot-amber"></span>Open container drink policy draft</div>
+  </div>
+  <div class="card">
+    <h2>ACTIVE PROJECTS</h2>
+    <div class="item"><span class="dot dot-amber"></span>Shrink wrap barrier (awaiting delivery)</div>
+    <div class="item"><span class="dot dot-amber"></span>Vest-until-verified program</div>
+    <div class="item"><span class="dot dot-amber"></span>Rotation log rollout</div>
+    <div class="item"><span class="dot dot-amber"></span>CA training for supervisors</div>
+    <div class="item"><span class="dot dot-amber"></span>Furnace walkway fall protection</div>
+    <div class="item"><span class="dot dot-amber"></span>Gas heater (Soham wash pit)</div>
+    <div class="item"><span class="dot dot-amber"></span>Line 1 project meeting setup</div>
+    <div class="item"><span class="dot dot-green"></span>Dry ice blasting trial</div>
+    <div class="item"><span class="dot dot-green"></span>Huntingdon transition (plan)</div>
   </div>
 </div>
 
-<div class="card">
-  <h2>CORRECTIVE ACTIONS</h2>
-  <div class="ca-row">🔴 <b>Justin/Bryan</b> Shrink wrap safety zone — repaint lines, dial speed, U-Line guard rails <span class="muted">(1d)</span></div>
-<div class="ca-row">🟡 <b>Justin</b> Complete 2026 incident review & RCA <span class="muted">(2d)</span></div>
-<div class="ca-row">🔴 <b>Justin</b> Rebuild Oven Operator JSA — ownership & review structure <span class="muted">(1d)</span></div>
-<div class="ca-row">🔴 <b>Justin</b> Build training matrix per role <span class="muted">(1d)</span></div>
-<div class="ca-row">🔴 <b>Justin</b> Review LOTO procedures for oven area <span class="muted">(0d)</span></div>
+<div class="card" style="margin-bottom:10px">
+  <h2>RECENT ACTIVITY</h2>
+  <div style="font-size:12px;color:#94a3b8;line-height:1.6">
+    <div style="display:flex;gap:6px;padding:2px 0"><span class="dot dot-green"></span>Bonnie Swim incident - recordable, hospital (Nov 7)</div>
+    <div style="display:flex;gap:6px;padding:2px 0"><span class="dot dot-green"></span>CEO call - Jason confirmed Safety Leader title</div>
+    <div style="display:flex;gap:6px;padding:2px 0"><span class="dot dot-green"></span>Paint walkway markings added to tracker</div>
+    <div style="display:flex;gap:6px;padding:2px 0"><span class="dot dot-green"></span>Fire extinguisher zone flagged for Bryan</div>
+    <div style="display:flex;gap:6px;padding:2px 0"><span class="dot dot-green"></span>EHS Discussion meeting tomorrow 2:30pm</div>
+  </div>
 </div>
 
-<div class="footer">Built Nov 06, 10:00 AM ET · refreshes every 30 min · Vanceburg</div>
+<div class="footer">
+  Superior Huntingdon Composites | EHS Leader: Justin Bartram | Built Nov 09, 12:00 AM ET | Refreshes every 30 min
+</div>
 
 <script>
-(function(){
-  function t(){
-    var e=document.getElementById("c");if(!e)return;
-    var n=new Date(),h=n.getHours(),m=n.getMinutes(),a=h>=12?"PM":"AM";
-    h=h%12||12;e.innerHTML=h+":"+(m<10?"0":"")+m+"<small>"+a+"</small>";
-  }
-  t();setInterval(t,1000);
-})();
+var d=new Date();
+var h=d.getHours(),m=d.getMinutes(),a=h>=12?'PM':'AM';
+h=h%12||12;
+document.getElementById('clock').innerHTML=h+':'+(m<10?'0':'')+m+' '+a;
+setInterval(function(){
+  var e=new Date(),h2=e.getHours(),m2=e.getMinutes(),a2=e.getHours()>=12?'PM':'AM';
+  h2=h2%12||12;
+  document.getElementById('clock').innerHTML=h2+':'+(m2<10?'0':'')+m2+' '+a2;
+},30000);
 </script>
-</body></html>
+</body>
+</html>
