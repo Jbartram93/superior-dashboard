@@ -4,68 +4,82 @@
 <meta charset="utf-8">
 <meta http-equiv="refresh" content="1800">
 <meta name="viewport" content="width=1280">
-<title>My Day — Personal Tracker</title>
+<title>Justin's Day</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0f172a;color:#e2e8f0;font-family:Segoe UI,Arial,sans-serif;font-size:13px;padding:10px 14px}
-.hdr{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #3b82f6;padding-bottom:6px;margin-bottom:8px}
-.clock{font-size:32px;font-weight:bold;color:#f8fafc}
-.dt{font-size:11px;color:#94a3b8}
-.right{text-align:right;font-size:10px;color:#3b82f6}
-table{width:100%;border-collapse:collapse}
-td{padding:3px 5px;vertical-align:top}
-.card{border:1px solid #334155;border-radius:6px;padding:7px;background:#1e293b;margin-bottom:4px}
-h2{font-size:10px;color:#60a5fa;font-weight:bold;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #334155;padding-bottom:3px;margin-bottom:4px}
-.it{padding:3px 0;font-size:11px;border-bottom:1px solid #16233b;line-height:1.3}
-.pri{display:inline-block;width:5px;height:5px;border-radius:50%;margin-right:4px}
-.p1{background:#ef4444}.p2{background:#f59e0b}.p3{background:#3b82f6}
-.ft{font-size:9px;color:#475569;text-align:center;margin-top:6px;padding-top:4px;border-top:1px solid #334155}
+body{background:#0b1120;color:#e2e8f0;font-family:Segoe UI,Arial,sans-serif;padding:20px;min-height:100vh;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #3b82f6;padding-bottom:10px;margin-bottom:16px}
+.clock{font-size:44px;font-weight:700;color:#fff;letter-spacing:-1px}
+.date{font-size:14px;color:#64748b;margin-top:2px}
+.tagline{font-size:11px;color:#3b82f6;text-align:right;text-transform:uppercase;letter-spacing:1px}
+.focus-row{display:flex;gap:12px;margin-bottom:14px}
+.focus-card{flex:1;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:14px 16px}
+.focus-num{font-size:13px;font-weight:700;color:#64748b;margin-bottom:4px}
+.focus-text{font-size:16px;font-weight:600;color:#f8fafc;line-height:1.3}
+.focus-note{font-size:11px;color:#64748b;margin-top:4px}
+.lanes{display:flex;gap:12px;flex:1}
+.lane{flex:1;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px}
+.lane-hdr{font-size:11px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #334155;padding-bottom:6px;margin-bottom:8px}
+.item{font-size:14px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);line-height:1.3;display:flex;gap:8px;align-items:flex-start}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.dr{background:#ef4444}.da{background:#f59e0b}.db{background:#3b82f6}.dg{background:#22c55e}
+.muted{font-size:11px;color:#64748b;margin-top:1px}
+.footer{font-size:10px;color:#475569;text-align:center;margin-top:12px;padding-top:8px;border-top:1px solid #1e293b}
 </style>
 </head>
 <body>
 
-<div class="hdr">
-  <div><div class="clock" id="clock">--</div><div class="dt" id="date">--</div></div>
-  <div class="right">Superior EHS<br>Justin's Personal Board</div>
+<div class="top">
+  <div>
+    <div class="clock" id="clock">--</div>
+    <div class="date" id="date">--</div>
+  </div>
+  <div class="tagline">Justin Bartram<br>EHS Leader</div>
 </div>
 
-<table><tr>
-<td style="width:25%"><div class="card"><h2>TODAY</h2>
-  <div class="it pri p1"></div>EHS Leadership Meeting 2:30pm</div>
-  <div class="it pri p2"></div>Review Bonnie Swim actions</div>
-  <div class="it pri p2"></div>Talk to Doug about Teams</div>
-  <div class="it pri p3"></div>Get vest pricing for Greg</div>
-</div></td>
-<td style="width:25%"><div class="card"><h2>THIS WEEK</h2>
-  <div class="it pri p1"></div>Leadership meeting - Nov 10</div>
-  <div class="it pri p2"></div>Rotation log rollout</div>
-  <div class="it pri p2"></div>Talk to Doug - Teams hosting</div>
-  <div class="it pri p3"></div>CA supervisor standards</div>
-</div></td>
-<td style="width:25%"><div class="card"><h2>SCHEDULE</h2>
-  <div class="it pri p1"></div>Tue 2:30pm - EHS Meeting</div>
-  <div class="it pri p2"></div>Wed 9am - Prod Call</div>
-  <div class="it pri p2"></div>Thu 10:30am - Safety Walk</div>
-  <div class="it pri p2"></div>Fri 1pm - Weekly Planning</div>
-</div></td>
-<td style="width:25%"><div class="card"><h2>PROJECTS</h2>
-  <div class="it pri p2"></div>Shrink wrap barrier</div>
-  <div class="it pri p2"></div>Vest-until-verified</div>
-  <div class="it pri p2"></div>Rotation log rollout</div>
-  <div class="it pri p3"></div>Huntingdon visit (Dec)</div>
-</div></td>
-</tr></table>
+<div class="focus-row">
+  <div class="focus-card">
+    <div class="focus-num">THIS WEEK</div>
+    <div class="focus-text">Lead the EHS leadership meeting<br>Talk to Doug about Teams<br>Roll out rotation log + vests</div>
+    <div class="focus-note">3 things. Everything else can wait.</div>
+  </div>
+  <div class="focus-card">
+    <div class="focus-num">TODAY</div>
+    <div class="focus-text">Tue Nov 10 — EHS Discussion<br>2:30 PM · Teams · Jason, John, Greg, Jodi</div>
+    <div class="focus-note">Talking points ready in your bag.</div>
+  </div>
+</div>
 
-<div class="card" style="margin-top:2px"><h2>MY 3 FOCUSES THIS WEEK</h2>
-<div class="it pri p1"></div>1. Lead the EHS leadership meeting with confidence</div>
-<div class="it pri p2"></div>2. Move the tracker into Teams</div>
-<div class="it pri p3"></div>3. Roll out rotation log + vests program</div></div>
+<div class="lanes">
+  <div class="lane">
+    <div class="lane-hdr">NOW</div>
+    <div class="item"><span class="dot dr"></span><div>EHS leadership meeting prep<span class="muted"> · Read talking points, done.</span></div></div>
+    <div class="item"><span class="dot dr"></span><div>Tell Soham: Dayton works with guards</div></div>
+    <div class="item"><span class="dot da"></span><div>Talk to Doug about Teams hosting</div></div>
+    <div class="item"><span class="dot da"></span><div>Bonnie Swim — paint walkway with Bryan</div></div>
+  </div>
+  <div class="lane">
+    <div class="lane-hdr">NEXT</div>
+    <div class="item"><span class="dot db"></span><div>Expander rotation log rollout</div></div>
+    <div class="item"><span class="dot db"></span><div>Get vest pricing for Greg</div></div>
+    <div class="item"><span class="dot db"></span><div>Review IES air sampling results</div></div>
+    <div class="item"><span class="dot db"></span><div>Create EHS team in Microsoft Teams</div></div>
+  </div>
+  <div class="lane">
+    <div class="lane-hdr">LATER</div>
+    <div class="item"><span class="dot dg"></span><div>HEPA saw quotes for furnace cutting</div></div>
+    <div class="item"><span class="dot dg"></span><div>Huntingdon visit (Dec)</div></div>
+    <div class="item"><span class="dot dg"></span><div>Orientation PowerPoint revamp</div></div>
+    <div class="item"><span class="dot dg"></span><div>Open container drink policy</div></div>
+  </div>
+</div>
 
-<div class="ft">Justin Bartram - EHS Leader | Updated Nov 09, 2026 | Refreshes every 30 min</div>
+<div class="footer">Refreshes every 30 min · Ask me anything, I'm keeping track.</div>
 
 <script>
 var d=new Date();
-var dd=d.getDate(),mmm=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()];
+var dd=d.getDate(),mm=d.getMonth(),y=d.getFullYear();
+var mmm=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][mm];
 var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d.getDay()];
 var h=d.getHours(),m=d.getMinutes(),a=h>=12?'PM':'AM';h=h%12||12;
 document.getElementById('clock').innerHTML=h+':'+(m<10?'0':'')+m+' '+a;
