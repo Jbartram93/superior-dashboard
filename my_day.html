@@ -58,14 +58,15 @@ body{background:#0b1120;color:#e2e8f0;font-family:Segoe UI,Arial,sans-serif;padd
   </div>
   <div class="focus-card">
     <div class="focus-num">TODAY</div>
-    <div class="focus-text">Prep for tomorrow's leadership meeting<br>Talk to Doug about Teams hosting</div>
-    <div class="focus-note">Talking points ready. Meeting is Tue 2:30pm.</div>
+        <div class="focus-text">1:00 PM — Safety Walk<br>Prep for tomorrow's EHS meeting</div>
+        <div class="focus-note">Walk at 1pm. Meeting is tomorrow 2:30pm.</div>
   </div>
 </div>
 
 <div class="lanes">
   <div class="lane"><div class="lane-hdr">NOW</div>
-    <div class="item"><span class="dot dr"></span><div>Prep for EHS meeting tomorrow 2:30pm</div></div>
+      <div class="item"><span class="dot dr"></span><div>Safety Walk at 1:00pm</div></div>
+      <div class="item"><span class="dot da"></span><div>Prep for EHS meeting tomorrow 2:30pm</div></div>
     <div class="item"><span class="dot da"></span><div>Talk to Doug about Teams</div></div>
     <div class="item"><span class="dot da"></span><div>Bonnie Swim — paint walkway w Bryan</div></div>
   </div>
@@ -96,11 +97,11 @@ document.getElementById('clock').innerHTML=h+':'+(m<10?'0':'')+m+' '+a;
 document.getElementById('date').innerHTML=ddd[w]+', '+mmm[d.getMonth()]+' '+d.getDate();
 
 // getDay: Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6
-// TODAY IS MONDAY Nov 9
-// Meeting is TOMORROW (Tue 2, index 2)
+// TODAY = MONDAY (index 1): Safety Walk 1:00 PM
+// TOMORROW = TUESDAY (index 2): EHS Meeting 2:30 PM, SCC Prod Call 9:00 AM
 var events = [
+  [1, "1:00 PM", "Safety Walk", "orange"],
   [2, "2:30 PM", "EHS Leadership Meeting", "blue"],
-  [2, "1:00 PM", "Safety Walk", "orange"],
   [2, "9:00 AM", "SCC Production Call", "blue"],
   [4, "10:30 AM", "Safety Walkthrough", "green"],
   [5, "1:00 PM", "Weekly Planning", "blue"],
