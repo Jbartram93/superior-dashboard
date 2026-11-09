@@ -31,7 +31,7 @@ h2{font-size:11px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-
 <div class="header">
   <div>
     <div class="clock" id="clock">--</div>
-    <div class="date" id="date">Monday, November 09, 2026</div>
+    <div class="date" id="date">Monday, November 9, 2026</div>
   </div>
   <div>
     <div class="wx">Vanceburg, KY</div>
@@ -86,7 +86,7 @@ h2{font-size:11px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-
 </div>
 
 <div class="footer">
-  Superior Huntingdon Composites | EHS Leader: Justin Bartram | Built Nov 09, 12:00 AM ET | Refreshes every 30 min
+  Superior Huntingdon Composites | EHS Leader: Justin Bartram | Refreshes every 30 min
 </div>
 
 <script>
@@ -94,11 +94,6 @@ var d=new Date();
 var h=d.getHours(),m=d.getMinutes(),a=h>=12?'PM':'AM';
 h=h%12||12;
 document.getElementById('clock').innerHTML=h+':'+(m<10?'0':'')+m+' '+a;
-setInterval(function(){
-  var e=new Date(),h2=e.getHours(),m2=e.getMinutes(),a2=e.getHours()>=12?'PM':'AM';
-  h2=h2%12||12;
-  document.getElementById('clock').innerHTML=h2+':'+(m2<10?'0':'')+m2+' '+a2;
-},30000);
 </script>
 </body>
 </html>
