@@ -38,7 +38,6 @@ body{background:#0b1120;color:#e2e8f0;font-family:Segoe UI,Arial,sans-serif;padd
 .item{font-size:12px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);line-height:1.3;display:flex;gap:7px;align-items:flex-start}
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-top:3px;flex-shrink:0}
 .dr{background:#ef4444}.da{background:#f59e0b}.db{background:#3b82f6}.dg{background:#22c55e}
-.muted{font-size:10px;color:#64748b;margin-top:1px}
 .ft{font-size:9px;color:#475569;text-align:center;margin-top:10px;padding-top:6px;border-top:1px solid #1e293b}
 </style>
 </head>
@@ -55,18 +54,18 @@ body{background:#0b1120;color:#e2e8f0;font-family:Segoe UI,Arial,sans-serif;padd
   <div class="focus-card">
     <div class="focus-num">THIS WEEK</div>
     <div class="focus-text">Lead the EHS leadership meeting<br>Talk to Doug about Teams<br>Roll out rotation log + vests</div>
-    <div class="focus-note">3 things. Everything else can wait.</div>
+    <div class="focus-note">3 things.</div>
   </div>
   <div class="focus-card">
     <div class="focus-num">TODAY</div>
-    <div class="focus-text" id="today-focus">2:30 PM — EHS Leadership Meeting<br>Jason, John, Greg, Jodi</div>
-    <div class="focus-note">Talking points ready.</div>
+    <div class="focus-text">Prep for tomorrow's leadership meeting<br>Talk to Doug about Teams hosting</div>
+    <div class="focus-note">Talking points ready. Meeting is Tue 2:30pm.</div>
   </div>
 </div>
 
 <div class="lanes">
   <div class="lane"><div class="lane-hdr">NOW</div>
-    <div class="item"><span class="dot dr"></span><div>EHS meeting at 2:30pm</div></div>
+    <div class="item"><span class="dot dr"></span><div>Prep for EHS meeting tomorrow 2:30pm</div></div>
     <div class="item"><span class="dot da"></span><div>Talk to Doug about Teams</div></div>
     <div class="item"><span class="dot da"></span><div>Bonnie Swim — paint walkway w Bryan</div></div>
   </div>
@@ -84,7 +83,7 @@ body{background:#0b1120;color:#e2e8f0;font-family:Segoe UI,Arial,sans-serif;padd
   </div>
 </div>
 
-<div class="ft">Text me appointments & I update the calendar. Refreshes every 30 min.</div>
+<div class="ft">Text me appointments & I update the calendar.</div>
 
 <script>
 var d=new Date(),w=d.getDay(),st=new Date(d);
@@ -96,10 +95,11 @@ var h=d.getHours(),m=d.getMinutes(),a=h>=12?'PM':'AM';h=h%12||12;
 document.getElementById('clock').innerHTML=h+':'+(m<10?'0':'')+m+' '+a;
 document.getElementById('date').innerHTML=ddd[w]+', '+mmm[d.getMonth()]+' '+d.getDate();
 
-// getDay(): Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6
-// Today is Monday Nov 9, 2026
+// getDay: Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6
+// TODAY IS MONDAY Nov 9
+// Meeting is TOMORROW (Tue 2, index 2)
 var events = [
-  [1, "2:30 PM", "EHS Leadership Meeting", "blue"],
+  [2, "2:30 PM", "EHS Leadership Meeting", "blue"],
   [2, "1:00 PM", "Safety Walk", "orange"],
   [2, "9:00 AM", "SCC Production Call", "blue"],
   [4, "10:30 AM", "Safety Walkthrough", "green"],
