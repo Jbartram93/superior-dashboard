@@ -6,94 +6,94 @@
 <meta name="viewport" content="width=1280">
 <title>Superior EHS Dashboard</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0f172a;color:#e2e8f0;font-family:Arial,sans-serif;font-size:14px;padding:16px 20px}
-.header{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #3b82f6;padding-bottom:8px;margin-bottom:10px}
-.clock{font-size:38px;font-weight:700;color:#f8fafc}
-.date{font-size:13px;color:#94a3b8}
-.wx{font-size:12px;color:#3b82f6;text-align:right}
-.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:10px}
-.card{background:rgba(30,41,59,0.6);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:10px 12px}
-.stat-val{font-size:22px;font-weight:700;color:#f8fafc}
-.stat-lbl{font-size:10px;color:#64748b;text-transform:uppercase}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
-h2{font-size:11px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;border-bottom:1px solid rgba(59,130,246,0.15);padding-bottom:4px}
-.item{padding:4px 0;font-size:12px;border-bottom:1px solid rgba(59,130,246,0.08);line-height:1.3}
-.dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;vertical-align:middle}
-.dot-red{background:#ef4444}
-.dot-amber{background:#f59e0b}
-.dot-green{background:#22c55e}
-.footer{font-size:10px;color:#475569;text-align:center;margin-top:10px;border-top:1px solid rgba(59,130,246,0.1);padding-top:8px}
+body{background:#0f172a;color:#e2e8f0;font-family:Arial,Helvetica,sans-serif;font-size:14px;padding:10px 14px;margin:0}
+table{width:100%;border-collapse:collapse}
+td{padding:4px 6px;vertical-align:top}
+.hdr{border-bottom:2px solid #3b82f6;padding-bottom:6px}
+.clock{font-size:36px;font-weight:bold;color:#f8fafc}
+.dt{font-size:12px;color:#94a3b8}
+.sub{font-size:10px;color:#3b82f6;text-align:right}
+.card{border:1px solid #334155;border-radius:6px;padding:8px;background:#1e293b;margin-bottom:4px}
+.st-val{font-size:20px;font-weight:bold;color:#f8fafc}
+.st-lbl{font-size:9px;color:#64748b;text-transform:uppercase}
+h2{font-size:10px;color:#60a5fa;font-weight:bold;text-transform:uppercase;border-bottom:1px solid #334155;padding-bottom:3px;margin-bottom:4px}
+.it{padding:3px 0;font-size:11px;border-bottom:1px solid #1e293b}
+.dot{display:inline-block;width:5px;height:5px;border-radius:50%;margin-right:4px}
+.da{background:#f59e0b}
+.dg{background:#22c55e}
+.ft{font-size:9px;color:#475569;text-align:center;margin-top:6px;padding-top:4px;border-top:1px solid #334155}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div>
-    <div class="clock" id="clock">--</div>
-    <div class="date" id="date">Monday, November 9, 2026</div>
-  </div>
-  <div>
-    <div class="wx">Vanceburg, KY</div>
-    <div class="wx" style="font-size:10px">Superior Huntingdon Composites | EHS Dashboard</div>
-  </div>
+<table class="hdr"><tr>
+<td style="width:50%"><div class="clock" id="clock">--</div><div class="dt">Monday, November 9, 2026</div></td>
+<td style="text-align:right"><div class="sub">Vanceburg, KY</div><div class="sub" style="font-size:9px;color:#64748b">Superior EHS Dashboard</div></td>
+</tr></table>
+<br>
+
+<table><tr>
+<td style="width:25%"><div class="card"><div class="st-lbl">Open Corrective Actions</div><div class="st-val">10</div></div></td>
+<td style="width:25%"><div class="card"><div class="st-lbl">Active Projects</div><div class="st-val">14</div></div></td>
+<td style="width:25%"><div class="card"><div class="st-lbl">2026 Incidents</div><div class="st-val">25</div></div></td>
+<td style="width:25%"><div class="card"><div class="st-lbl">Days Since LTI</div><div class="st-val">12</div></div></td>
+</tr></table>
+<br>
+
+<table><tr>
+<td style="width:50%">
+<div class="card">
+<h2>OPEN CORRECTIVE ACTIONS</h2>
+<div class="it">Paint walkway markings - QC shack pallet zone (Justin)</div>
+<div class="it">Fire extinguisher clearance zone (Bryan)</div>
+<div class="it">Expander rotation log rollout (supervisors)</div>
+<div class="it">Vest pricing for Greg</div>
+<div class="it">IES air sampling results review (RCF furnace)</div>
+<div class="it">Furnace walkway fall protection audit</div>
+<div class="it">Gas heater options (Soham wash pit)</div>
+<div class="it">Shrink wrap barrier - awaiting delivery</div>
+<div class="it">Line 1 meeting - Sean/Tom/Roger/Jodi</div>
+<div class="it">Open container drink policy draft</div>
+</div>
+</td>
+<td style="width:50%">
+<div class="card">
+<h2>ACTIVE PROJECTS</h2>
+<div class="it">Shrink wrap barrier (awaiting delivery)</div>
+<div class="it">Vest-until-verified program</div>
+<div class="it">Rotation log rollout</div>
+<div class="it">CA training for supervisors</div>
+<div class="it">Furnace walkway fall protection</div>
+<div class="it">Gas heater (Soham wash pit)</div>
+<div class="it">Line 1 project meeting setup</div>
+<div class="it">Dry ice blasting trial</div>
+<div class="it">Huntingdon transition (plan)</div>
+</div>
+</td>
+</tr></table>
+<br>
+
+<div class="card" style="padding:6px 10px;margin-bottom:10px">
+<h2>RECENT ACTIVITY</h2>
+<div style="font-size:11px;color:#94a3b8">
+<div style="padding:2px 0"><span class="dot dg"></span>Bonnie Swim incident - recordable, hospital (Nov 7)</div>
+<div style="padding:2px 0"><span class="dot dg"></span>CEO call - Jason confirmed Safety Leader title</div>
+<div style="padding:2px 0"><span class="dot dg"></span>Paint walkway markings added to tracker</div>
+<div style="padding:2px 0"><span class="dot dg"></span>Fire extinguisher zone flagged for Bryan</div>
+<div style="padding:2px 0"><span class="dot dg"></span>EHS Discussion meeting tomorrow 2:30pm</div>
+</div>
 </div>
 
-<div class="grid-4">
-  <div class="card"><div class="stat-lbl">Open Corrective Actions</div><div class="stat-val">10</div></div>
-  <div class="card"><div class="stat-lbl">Active Projects</div><div class="stat-val">14</div></div>
-  <div class="card"><div class="stat-lbl">2026 Incidents</div><div class="stat-val">25</div></div>
-  <div class="card"><div class="stat-lbl">Days Since LTI</div><div class="stat-val">12</div></div>
-</div>
-
-<div class="grid-2">
-  <div class="card">
-    <h2>OPEN CORRECTIVE ACTIONS</h2>
-    <div class="item"><span class="dot dot-amber"></span>Paint walkway markings - QC shack pallet zone (Justin)</div>
-    <div class="item"><span class="dot dot-amber"></span>Fire extinguisher clearance zone (Bryan)</div>
-    <div class="item"><span class="dot dot-amber"></span>Expander rotation log rollout (supervisors)</div>
-    <div class="item"><span class="dot dot-amber"></span>Vest pricing for Greg</div>
-    <div class="item"><span class="dot dot-amber"></span>IES air sampling results review (RCF furnace)</div>
-    <div class="item"><span class="dot dot-amber"></span>Furnace walkway fall protection audit</div>
-    <div class="item"><span class="dot dot-amber"></span>Gas heater options (Soham wash pit)</div>
-    <div class="item"><span class="dot dot-amber"></span>Shrink wrap barrier - awaiting delivery</div>
-    <div class="item"><span class="dot dot-amber"></span>Line 1 meeting - Sean/Tom/Roger/Jodi</div>
-    <div class="item"><span class="dot dot-amber"></span>Open container drink policy draft</div>
-  </div>
-  <div class="card">
-    <h2>ACTIVE PROJECTS</h2>
-    <div class="item"><span class="dot dot-amber"></span>Shrink wrap barrier (awaiting delivery)</div>
-    <div class="item"><span class="dot dot-amber"></span>Vest-until-verified program</div>
-    <div class="item"><span class="dot dot-amber"></span>Rotation log rollout</div>
-    <div class="item"><span class="dot dot-amber"></span>CA training for supervisors</div>
-    <div class="item"><span class="dot dot-amber"></span>Furnace walkway fall protection</div>
-    <div class="item"><span class="dot dot-amber"></span>Gas heater (Soham wash pit)</div>
-    <div class="item"><span class="dot dot-amber"></span>Line 1 project meeting setup</div>
-    <div class="item"><span class="dot dot-green"></span>Dry ice blasting trial</div>
-    <div class="item"><span class="dot dot-green"></span>Huntingdon transition (plan)</div>
-  </div>
-</div>
-
-<div class="card" style="margin-bottom:10px">
-  <h2>RECENT ACTIVITY</h2>
-  <div style="font-size:12px;color:#94a3b8;line-height:1.6">
-    <div style="display:flex;gap:6px;padding:2px 0"><span class="dot dot-green"></span>Bonnie Swim incident - recordable, hospital (Nov 7)</div>
-    <div style="display:flex;gap:6px;padding:2px 0"><span class="dot dot-green"></span>CEO call - Jason confirmed Safety Leader title</div>
-    <div style="display:flex;gap:6px;padding:2px 0"><span class="dot dot-green"></span>Paint walkway markings added to tracker</div>
-    <div style="display:flex;gap:6px;padding:2px 0"><span class="dot dot-green"></span>Fire extinguisher zone flagged for Bryan</div>
-    <div style="display:flex;gap:6px;padding:2px 0"><span class="dot dot-green"></span>EHS Discussion meeting tomorrow 2:30pm</div>
-  </div>
-</div>
-
-<div class="footer">
-  Superior Huntingdon Composites | EHS Leader: Justin Bartram | Refreshes every 30 min
-</div>
+<div class="ft">Superior Huntingdon Composites | EHS Leader: Justin Bartram | Refreshes every 30 min</div>
 
 <script>
 var d=new Date();
-var h=d.getHours(),m=d.getMinutes(),a=h>=12?'PM':'AM';
+var h=d.getHours(),m=d.getMinutes();
+var a=h>=12?'PM':'AM';
 h=h%12||12;
-document.getElementById('clock').innerHTML=h+':'+(m<10?'0':'')+m+' '+a;
+var hs=h+':'+(m<10?'0':'')+m+' '+a;
+document.getElementById('clock').innerHTML=hs;
 </script>
+
 </body>
 </html>
